@@ -1,0 +1,105 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.zong {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+}
+
+.box {
+    width: 500%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.box a {
+    width: 20%;
+    height: 100%;
+    float: left;
+    /* position: absolute;
+    left: 0;
+    top: 0; */
+}
+
+.box a:nth-child(1) {
+    background: url(https://dimg04.c-ctrip.com/images/zg05180000013qpkdF836.jpg) no-repeat center/100% 100%;
+}
+.box a:nth-child(5) {
+    background: url(https://dimg04.c-ctrip.com/images/zg05180000013qpkdF836.jpg) no-repeat center/100% 100%;
+}
+
+
+.box a:nth-child(2) {
+    background: url(https://dimg04.c-ctrip.com/images/zg0q1800000147ai7A062.jpg) no-repeat center/100% 100%;
+}
+
+.box a:nth-child(3) {
+    background: url(https://dimg04.c-ctrip.com/images/zg09180000014fecy5501.jpg) no-repeat center/100% 100%;
+}
+
+.box a:nth-child(4) {
+    background: url(https://dimg04.c-ctrip.com/images/zg0h180000013gofdEE0B.jpg) no-repeat center/100% 100%;
+}
+
+.btn1 {
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    right: 400px;
+    bottom: 30px;
+    position: absolute;
+    z-index: 999;
+}
+
+.btn1>div {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    float: left;
+    margin: 0 5px;
+    background: #ffff;
+    cursor: pointer;
+}
+
+
+.userindexbottom{
+    width: 600px;
+    height: 300px;
+    border: 1px solid red;
+    margin:auto;
+    position: relative;
+}
+.submit{
+    position: absolute;
+    right: 120px;
+    bottom: 0;
+}
+/*
+.findTicket{
+    
+}
+.uib-top{
+    width:100%;
+    height: 100px;
+    position: relative;
+}
+.chaxun{
+    margin:auto;
+}
+.from{
+    float: left;
+}
+.to{
+    float: right;
+}
+.submit{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}*/
