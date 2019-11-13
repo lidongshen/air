@@ -31,33 +31,31 @@ layui.use(['table','form','util'],function() {
 							type : 'checkbox'
 						},
 						{
-							field : 'bId',
+							field : 'cId',
 							title : 'ID',
 							sort : true,
 							unresize : true,
 						},
 						{
+							field : 'cNumber',
+							title : '员工号',
+						},
+						{
+							field : 'cName',
+							title : '姓名',
+							unresize : true,
+						},
+						{
+							field : 'cPassword',
+							title : '密码',
+							unresize : true,
+						},
+						{
 							field : 'bName',
-							title : '站点名称',
-							unresize : true,
-							width:140
-						},
-						{
-							field : 'bProvince',
-							title : '省份',
-						},
-						{
-							field : 'bCity',
-							title : '城市',
+							title : '营业点名称',
 							unresize : true,
 						},
 						{
-							field : 'bPhone',
-							title : '电话',
-							sort : true,
-							unresize : true,
-						},
-						 {
 							title : '操作',
 							fixed:'right',
 							toolbar : '#barDemo',

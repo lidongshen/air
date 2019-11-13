@@ -16,12 +16,13 @@
 	<div class="layui-layout layui-layout-admin">
 		<div class="layui-header">
 			<div class="layui-logo">您的工号为&nbsp;<span class="user"></span></div>
+			 
 			<ul class="layui-nav layui-layout-right">
 				<li class="layui-nav-item">
 				<img src="/airsys/assets/image/houtai.jpg" class="layui-nav-img"> 
 				<span class="user"></span>
 				</li>
-				<li class="layui-nav-item">&nbsp;&nbsp;天气</li>
+				
 				<li class="layui-nav-item exitbtn"><a href="javascript:;">退出登录</a></li>
 			</ul>
 		</div>
@@ -40,7 +41,7 @@
 								<a href="javascript:;" target="HK">营业员管理</a>
 							</dd>
 							<dd>
-								<a href="javascript:;" target="HK">营业网点管理</a>
+								<a href="buindex" target="HK">营业网点管理</a>
 							</dd>
 							<dd>
 								<a href="javascript:;" target="HK">统计信息与报表</a>

@@ -23,7 +23,7 @@
 </style>
 </head>
 <body>
-	<from class="layui-form layui-form-pane">
+	<from class="layui-form layui-form-pane" lay-filter="bu">
 		<div class="layui-form-item">
 			<div class="layui-inline">
 				<label class="layui-form-label">网点编号</label>

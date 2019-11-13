@@ -1,8 +1,18 @@
 $(function(){
+	console.log(parent.formdata.bId)
 	layui.use(['form','layer','jquery'], function(){
 		  var form = layui.form;
 		  var layer = layui.layer;
           var $=layui.jquery;
+          
+	      form.val('bu', { 
+				"bId":parent.formdata.bId,
+				"bName":parent.formdata.bName,
+				"bProvince":parent.formdata.bProvince,
+				"bCity":parent.formdata.bCity,
+				"bPhone":parent.formdata.bPhone
+	      })
+		    
 		  form.on('submit(bumessage)', function(data){
 			$.ajax({
 				url:'editbusinesspoint',
@@ -31,7 +41,7 @@ $(function(){
 			})
 			  return false; 
 		});
-		  
+		 
 	});
 	
 

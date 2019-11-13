@@ -15,7 +15,7 @@ import entity.BusinessPoint;
 import service.prototype.IBusinessPointService;
 
 @Controller
-public class businesspointController {
+public class BusinesspointController {
 	@Autowired
 	private IBusinessPointService bps;
 	
