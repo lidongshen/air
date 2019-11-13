@@ -1,0 +1,23 @@
+.container{
+            border: 1px solid red;
+            width: 350px;
+            height: 400px;
+        }
+        .twocode{
+            width: 300px;
+            height: 300px;
+            background: #cccccc;
+            margin: auto;
+            text-align: center;
+            line-height: 300px;
+        }
+        .paytype{
+            height: 30px;
+            width: 300px;
+            float:left;
+            margin-left: 10px;
+            border: 1px solid red;
+        }
+        .exitbtn{
+            float: right;
+        }

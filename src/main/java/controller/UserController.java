@@ -90,17 +90,25 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping("/index")
-	public ModelAndView index() {
+	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/index");
+		
 		return mv;
 	}
 	@RequestMapping("/checksession")
-	public String checkSession() {
-		return "checksession";
+	public ModelAndView checkSession() {
+		ModelAndView mv = new ModelAndView("user/checksession");
+		return mv;
 	}
 	@RequestMapping("/exit")
-	public String exit() {
-		return "exit";
+	public ModelAndView exit() {
+		ModelAndView mv = new ModelAndView("user/exit");
+		return mv;
+	}
+	@RequestMapping("/success")
+	public ModelAndView success() {
+		ModelAndView mv = new ModelAndView("user/success");
+		return mv;
 	}
 	
 }

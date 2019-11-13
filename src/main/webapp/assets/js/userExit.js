@@ -1,5 +1,4 @@
 window.onload=function(){
-	
 	$(".exitbtn").on("click",function(){
 		if(confirm("是否确定退出系统")){
 			$.ajax({

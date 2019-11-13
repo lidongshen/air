@@ -1,50 +1,14 @@
 window.onload = function () {
-    var zong = document.querySelector(".zong")
-    var boxlist = document.querySelectorAll(".box>a")
-    var box = document.querySelector(".box")
-
-    var btn1 = document.querySelectorAll(".btn1>div")
-    var clientwidth = document.documentElement.clientWidth
-    var num = 0
-    function move() {
-        num++
-        if (num >3) {
-            animate2(box, { left: -num * clientwidth },function(){
-                box.style.left=0
-            })
-            num=0
-        }else{
-            animate2(box, { left: -num * clientwidth })
-        }
-        for (var i = 0; i < btn1.length; i++) {
-            btn1[i].style.background = ""
-        }
-        btn1[num].style.background = "red"
-    }
-    var t = setInterval(move, 2000);
-    zong.onmouseover = function () {
-        clearInterval(t)
-    }
-    zong.onmouseout = function () {
-        t = setInterval(move, 2000)
-    }
-    for (var i = 0; i < btn1.length; i++) {
-        (function (i) {
-            btn1[i].onclick = function () {
-                num = i
-                animate(box, { left: -num * clientwidth })
-                for (var j = 0; j < btn1.length; j++) {
-                    btn1[j].style.background = ""
-                }
-                btn1[num].style.background = "red"
-            }
-        })(i)
-    }
-    
-    
-    
-    
-    
+	layui.use('carousel', function(){
+	  var carousel = layui.carousel;
+	  //建造实例
+	  carousel.render({
+	    elem: '#test1'
+	    ,width: '100%' //设置容器宽度
+	    ,arrow: 'always' //始终显示箭头
+	    //,anim: 'updown' //切换动画方式
+	  });
+	});
     layui.use('element', function(){
     	  var $ = layui.jquery
     	  ,element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
@@ -87,5 +51,22 @@ window.onload = function () {
     	  
     	});
     
+    
+    $(".exitbtn").on("click",function(){
+		console.log(1)
+		if(confirm("是否确定退出系统")){
+			$.ajax({
+				url:"/airsys/user/exit",
+				success:function(e){
+					var result=e.replace(/\s/g, "");
+					console.log(result);
+					if(result=="ok"){
+						window.location.href="/airsys/user/index";
+						$(".exitbtn").css({"display":"none"});
+					}
+				}
+			})
+		}
+	})
     
 }
