@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<% session.setAttribute("uId", request.getAttribute("uId")); 
-	out.print(session.getAttribute("uId"));
+<% 
+	String uId = session.getAttribute("uId").toString(); 
+	out.print(uId);
 %>
 <!doctype html>
 <html lang="en">
@@ -20,9 +21,15 @@
     <script src="/airsys/assets/jquery-validation/dist/localization/messages_zh.js"></script>
     <script src="/airsys/assets/js/userindex.js"></script>
     <script src="/airsys/assets/js/useranimate.js"></script>
+    <link rel="stylesheet" href="/airsys/assets/layui/css/layui.css">
+	<script src="/airsys/assets/layui/layui.js"></script>
+	<script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
+	<script src="//res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
+	
+	<script src="/airsys/assets/js/userExit.js"></script>
 </head>
 <body>
-    <div class = "zong">
+	<div class = "zong">
         <div class="box">
             <a href="#" style="z-index: 1"></a>
             <a href="#"></a>
@@ -38,7 +45,16 @@
             <div></div>
         </div>
     </div>
-    <div class="userindexbottom">
+	<div class="layui-tab">
+  <ul class="layui-tab-title">
+    <li class="layui-this">搜索页面</li>
+    <li>历史订单</li>
+    <li>用户信息</li>
+    <li class = "exitbtn">退出</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show">
+          <div class="userindexbottom">
     <div class="findTicket">
         <form method="post" id="form1" action="search" >
             <fieldset class = "uib-top">
@@ -63,5 +79,15 @@
     </div>
     </div>
     
+    </div>
+    <div class="layui-tab-item">内容2</div>
+    <div class="layui-tab-item">内容3</div>
+    
+  </div>
+</div>
+
+
+    
+
 </body>
 </html>

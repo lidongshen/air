@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,8 +36,6 @@ public class UserController {
 		String from = request.getParameter("from");
 		String to = request.getParameter("to");		
 		String time = request.getParameter("time");
-		System.out.println(from);
-		System.out.println(to);
 		System.out.println(time);
 		ModelAndView mv = new ModelAndView("user/list");
 		List<Flight> f = userService.findTicket(from, to);
@@ -59,10 +58,11 @@ public class UserController {
 		if(userService.isLogin(uphone,upwd)) {
 			mv = new ModelAndView("user/index");
 			mv.addObject("uId", u.getuId());
-			request.setAttribute("uId",  u.getuId());
+			HttpSession session = request.getSession(true);
+			session.setAttribute("uId", u.getuId());
+			session.setAttribute("userlogin", "yes");
 		}else {
 			mv = new ModelAndView("login/ulogin");
-			
 		}
 		return mv;
 	}
@@ -74,7 +74,7 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value="/payTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
-	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("fId") int uId) {
+	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("uId") int uId) {
 		ModelAndView mv = new ModelAndView("user/pay");
 		System.out.println(fId);
 		System.out.println(uId);
@@ -82,7 +82,7 @@ public class UserController {
 		return mv;
 	}
 	@RequestMapping(value="/orderTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
-	public ModelAndView orderTicket(@PathVariable("fId") int fId,@PathVariable("fId") int uId) {
+	public ModelAndView orderTicket(@PathVariable("fId") int fId,@PathVariable("uId") int uId) {
 		ModelAndView mv = new ModelAndView("user/orderTicket");
 		Flight orderFlight = flightService.seachFlight(fId);
 		mv.addObject("orderFlight", orderFlight);
@@ -94,5 +94,14 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/index");
 		return mv;
 	}
-
+	@RequestMapping("/checksession")
+	public String checkSession() {
+		return "checksession";
+	}
+	@RequestMapping("/exit")
+	public String exit() {
+		return "exit";
+	}
+	
 }
+

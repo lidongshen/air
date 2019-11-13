@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.io.*,java.util.*,java.sql.*,util.*"%>
 <% String uId = session.getAttribute("uId").toString(); 
-out.print(session.getAttribute("uId"));
+out.print(uId);
 %>
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,6 +30,7 @@ out.print(session.getAttribute("uId"));
 				<th>航班名字</th>
 				<th>起始地</th>
 				<th>目的地</th>
+				<th>余票</th>
 				<th>出发时间</th>
 				<th>抵达时间</th>
 				<th>操作</th>
@@ -40,6 +41,7 @@ out.print(session.getAttribute("uId"));
 					<td>${f.fName}</td>
 					<td>${f.fFromcity}</td>
 					<td>${f.fTocity}+${time}</td>
+					<td>${f.fSeatnum}</td>
 					<td>
 						${f.fStarttime}
 					</td>

@@ -1,10 +1,9 @@
-pay success
+main.jsp
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<% 
-	String uId = session.getAttribute("uId").toString(); 
+<% String uId = session.getAttribute("uId").toString(); 
 	out.print(uId);
 %>
 <!doctype html>
@@ -16,11 +15,7 @@ pay success
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>订单</title>
     
-    
 </head>
 <body>
-    <form method="post" id="form1" action="/airsys/user/index" >
-         <input class="submit" type="submit" value="返回主页面">
-   	</form>
 </body>
 </html>

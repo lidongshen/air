@@ -67,7 +67,7 @@ public class UserDaoSpringImpl implements IUserDao{
 				"update trip set u_ispay=1 where u_id=? and f_id=?",
 				new Object[]{uId,fId});
 		jdbcTemplate.update(
-				"update trip set b_ispay=1 where u_id=? and f_id=?",
+				"update booking set b_ispay=1 where u_id=? and f_id=?",
 				new Object[]{uId,fId});
 	}
 
