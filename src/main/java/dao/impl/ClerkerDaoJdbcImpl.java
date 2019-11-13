@@ -16,6 +16,14 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
+
+	
+	@Override
+	//登录验证
+	public int findClerker(String cname, String cpwd) {
+		return jdbcTemplate.queryForObject("select c_id from clerker where c_number=? and c_password=?", new Object[] {cname,cpwd},Integer.class);
+	}
+	
 	@Override
 	//查询全部航班
 	public List<Flight> findFlightAll() {
@@ -32,6 +40,7 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 	}
 	
 	@Override
+	//查询航班详细信息
 	public List<Flight> findFlightinfo(int fid) {
 		return jdbcTemplate.query(
 				"SELECT * FROM flight WHERE f_id=?",
@@ -52,39 +61,56 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 
 	@Override
 	//订票
-	public void orderTicket(int uId, int fId) {
-		jdbcTemplate.update("insert into booking (u_id,c_id,f_id) values("+uId+",0,"+fId+")");
+	public void orderTicket(int uid,int cid, int fid) {
 		
-		jdbcTemplate.update("insert into trip (u_id,f_id) values("+uId+","+fId+")");
-		
+		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values("+uid+","+cid+","+fid+",0)");
 	}
 
-	@Override
-	//出票
-	public void drawerTicket(int uId, int fId) {
-		// TODO Auto-generated method stub
-		
-	}
+		@Override
+		//出票
+		public void drawerTicket(int uId,int cId, int fId) {
+			jdbcTemplate.update(
+					"insert into outticket (u_id,f_id,c_id,o_isout) values(?,?,?,1)");
+		} 
+
+		//退票
+		@Override
+		public void refundTicket(int uId, int fId) {
+			jdbcTemplate.update(
+					"update trip set u_ispay=0 where u_id=? and f_id=?",
+					new Object[] {uId,fId});
+			jdbcTemplate.update(
+					"update booking set b_ispay=0 where u_id=? and f_id=?",
+					new Object[] {uId,fId});
+			jdbcTemplate.update(
+					"update outticket set o_isout=0 where u_id=? and f_id=?",
+					new Object[] {uId,fId});
+		}
+
+		@Override
+		//改签
+		public void endorseTicket(int uId, int fId1,int fId2) {
+			jdbcTemplate.update(
+					"update trip set f_id = ? where u_id = ? and f_id=?",
+					new Object[] {fId2,uId,fId1});
+			jdbcTemplate.update(
+					"update booking set f_id = ? where u_id = ? and f_id=?",
+					new Object[] {fId2,uId,fId1});
+		}
+
+
+		@Override
+		//支付
+		public void pay(int uId, int fId) {
+			jdbcTemplate.update(
+					"update trip set u_ispay=1 where u_id=? and f_id=?",
+					new Object[]{uId,fId});
+		}
 
 	@Override
-	//退票
-	public void refundTicket(int uId, int fId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	//改签
-	public void endorseTicket(int uId, int fId1, int fId2) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	//支付
-	public void pay(int uId, int fId) {
-		// TODO Auto-generated method stub
-		
+	//修改用户信息
+	public void Modify(int uid) {
+		jdbcTemplate.update("update ");
 	}
 }
 

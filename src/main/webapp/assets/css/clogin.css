@@ -1,0 +1,22 @@
+body {
+	background: url(/airsys/assets/image/air.jpg) no-repeat center/100% 100%;
+}
+
+.zong {
+	width: 380px;
+	height: auto;
+	overflow: hidden;
+	margin: 12% auto 0;
+	font-size: 18px;
+	color: #333333;
+	background: rgba(255, 255, 255, 0.4);
+	border-radius: 25px;
+	padding: 0 30px;
+	box-sizing: border-box;
+}
+
+.error {
+	color: red;
+	font-size: 12px;
+	margin-top: 5px;
+}

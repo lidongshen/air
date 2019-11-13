@@ -5,53 +5,54 @@
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<meta content="text/html;charset=utf-8">
-	<title>列出账号</title>
-	<script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
-	<script src="/airsys/assets/jquery-validation/dist/jquery.validate.min.js"></script>
-	<script src="/airsys/assets/jquery-validation/dist/localization/messages_zh.js"></script>
-
-	<style>
-		a{
-			text-decoration: none;
-		}
-	</style>
+<meta content="text/html;charset=utf-8">
+<title>航班详细信息</title>
+<script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
+<script
+	src="/airsys/assets/jquery-validation/dist/jquery.validate.min.js"></script>
+<script
+	src="/airsys/assets/jquery-validation/dist/localization/messages_zh.js"></script>
+<link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
+<style>
+a {
+	text-decoration: none;
+}
+</style>
 
 </head>
 <body>
 	<h3 align="center">航班信息</h3>
 	<hr color="red">
 	<center>
-		<table  border="1px" cellspacing="0" cellpadding="0">
-			<tr>
-				<th>航班ID</th>
-				<th>航班名字</th>
-				<th>起始地</th>
-				<th>目的地</th>
-				<th>出发时间</th>
-				<th>抵达时间</th>
-				<th>操作</th>
-			</tr>
-			
-			<c:forEach items="${f}" var="f">
+		<div class="container">
+			<table class="table table-bordered">
 				<tr>
-					<td>${f.fId}</td>
-					<td>${f.fName}</td>
-					<td>${f.fFromcity}</td>
-					<td>${f.fTocity}</td>
-					<td>${f.fStarttime}</td>
-					<td>${f.fEndtime}</td>
-					<td>
-						<button><a href="#" onclick=clerkerLookFlight>订票</a></button>
-					</td>
+					<th>航班ID</th>
+					<th>航班名字</th>
+					<th>起始地</th>
+					<th>目的地</th>
+					<th>出发时间</th>
+					<th>抵达时间</th>
 				</tr>
-			</c:forEach>
-			
-			
-		</table>
-		
+
+				<c:forEach items="${f}" var="f">
+					<tr>
+						<td>${f.fId}</td>
+						<td>${f.fName}</td>
+						<td>${f.fFromcity}</td>
+						<td>${f.fTocity}</td>
+						<td>${f.fStarttime}</td>
+						<td>${f.fEndtime}</td>
+					</tr>
+				</c:forEach>
+			</table>
+			<button>
+				<a href="#" onclick=clerkerLookFlight>订票</a>
+			</button>
+		</div>
 	</center>
-	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
+	<script type="text/javascript"
+		src="/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>
 
 </html>

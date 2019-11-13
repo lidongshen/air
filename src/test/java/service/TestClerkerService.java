@@ -34,6 +34,13 @@ public class TestClerkerService {
 		}
 	}
 	@Test
+	public void testFlightinfo() {
+		List<Flight> f = clerkerservice.seachFlightinfo(2);
+		for (Flight f1 : f) {
+			System.out.println(f1);
+		}
+	}
+	@Test
 	public void testFindUserAll() {
 		List<User> u = clerkerservice.seachUserAll();
 		for (User u1 : u) {
@@ -47,4 +54,14 @@ public class TestClerkerService {
 			System.out.println(u1);
 		}
 	}
+	@Test
+	public void testFindClerker() {
+		int findClerker = clerkerservice.findClerker("222","222222");
+		System.out.println(findClerker);
+	}
+	@Test
+	public void testOrderTicket() {
+		 clerkerservice.orderTicket(1,100,1);
+	}
+	
 }

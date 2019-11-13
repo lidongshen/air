@@ -50,5 +50,4 @@ public class BussinessPointDaoImpl implements IBussinessPointDao{
 	public int totalNum() {
 		return jt.queryForObject("select count(*) from businesspoint", Integer.class);
 	}
-
 }

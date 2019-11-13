@@ -10,19 +10,19 @@
 	<script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
 	<script src="/airsys/assets/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="/airsys/assets/jquery-validation/dist/localization/messages_zh.js"></script>
-
+	<link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
 	<style>
 		a{
 			text-decoration: none;
 		}
 	</style>
-
 </head>
 <body>
 	<h3 align="center">航班信息</h3>
 	<hr color="red">
 	<center>
-		<table  border="1px" cellspacing="0" cellpadding="0">
+	<div class="container">
+		<table  class="table table-bordered">
 			<tr>
 				<th>航班ID</th>
 				<th>航班名字</th>
@@ -42,14 +42,14 @@
 					<td>${f.fStarttime}</td>
 					<td>${f.fEndtime}</td>
 					<td>
-						<a href="flightinfo" onclick=clerkerLookFlight>查看详情</a>
+						<a href="http://localhost:8080/airsys/flightinfo/${f.fId}" >查看详情</a>
 					</td>
 				</tr>
 			</c:forEach>
 			
 			
 		</table>
-		
+	</div>	
 	</center>
 	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>

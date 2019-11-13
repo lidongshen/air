@@ -7,6 +7,8 @@ import entity.Flight;
 import entity.User;
 
 public interface IClerkerDao {
+		//登录查询
+		int findClerker(String cname,String cpwd);
 	     //航班查询
 		List<Flight> findFlightAll();
 		List<Flight> findFlightinfo(int fid);
@@ -14,11 +16,12 @@ public interface IClerkerDao {
 		//用户查询
 		List<User>  findUserAll();
 		List<User>  findUser(int uid);
+		//修改用户信息
+		void Modify(int uid);
 		//订票
-		void orderTicket(int uId,int fId);
-		
+		void orderTicket(int uid,int cid,int fid);
 		//出票
-		void drawerTicket(int uId,int fId);
+		void drawerTicket(int uId,int cid,int fId);
 		
 		//退款
 		void refundTicket(int uId,int fId);

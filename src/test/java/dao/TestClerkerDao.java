@@ -55,5 +55,22 @@ public class TestClerkerDao {
 			System.out.println(u1);
 		}
 	}
-
+	@Test
+	public void testFindClerker() {
+		int findClerker = 0;
+		try {
+			findClerker=clerkerdao.findClerker("222", "222222");
+		}catch (Exception e) {
+			//throw new RuntimeException("13");
+		}
+		System.out.println(findClerker);
+	}
+	@Test
+	public void testOrderTicket() {
+		 clerkerdao.orderTicket(1,1,1);
+	}
+	@Test
+	public void testDrawerTicket() {
+		clerkerdao.drawerTicket(1, 1, 1);
+	}
 }

@@ -40,4 +40,20 @@ public class ClerkerServiceImpl implements IClerkerService {
 	public List<User> seachUser(int uid) {
 		return clerkerdao.findUser(uid);
 	}
+
+	@Override
+	public int findClerker(String cname, String cpwd) {
+		int findClerker= 0;
+		try {
+			findClerker = clerkerdao.findClerker(cname, cpwd);
+		}catch (Exception e) {
+		}
+		return findClerker;
+	}
+
+	@Override
+	public void orderTicket(int uid, int cid, int fid) {
+		clerkerdao.orderTicket(uid, cid, fid);
+		
+	}
 }
