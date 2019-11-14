@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import entity.Booking;
 import entity.Flight;
 import entity.User;
 import service.prototype.IClerkerService;
@@ -42,13 +43,35 @@ public class ClerkerController {
 		String cname = request.getParameter("cname");
 		String cpwd = request.getParameter("cpwd");
 		int findClerker = clerkerService.findClerker(cname, cpwd);
+		System.out.println(findClerker);
 		if(findClerker==0) {
 			return "no";
 		}
 		HttpSession session = request.getSession(true);
-		session.setAttribute("findClerker",findClerker);
+		session.setAttribute("cId",findClerker);
 		return "ok";
 	}
+	
+	@RequestMapping("/corder")
+	@ResponseBody
+	public String corder(HttpSession session,@PathVariable("fId") int fId) {
+		int cId = (int) session.getAttribute("cId");
+		System.out.println(cId);
+		System.out.println(fId);
+		clerkerService.orderTicket(cId, fId);
+		return "ok";
+	}
+	@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView seachFindOrder(HttpSession session,@PathVariable("fId") int fId) {
+		int cId = (int) session.getAttribute("cId");
+		System.out.println(cId);
+		System.out.println(fId);
+		ModelAndView mv = new ModelAndView("clerker/corderTicket");
+		List<Booking> f = clerkerService.findBooking(cId, fId);
+		mv.addObject("f",f);
+		return mv;
+	} 
+	
 	@RequestMapping(value = "/cflightlist",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachFlightAll() {
 		ModelAndView mv = new ModelAndView("clerker/cflightlist");

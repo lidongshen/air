@@ -42,12 +42,10 @@
 					<td>${f.fStarttime}</td>
 					<td>${f.fEndtime}</td>
 					<td>
-						<a href="http://localhost:8080/airsys/flightinfo/${f.fId}" >查看详情</a>
+						<a href="flightinfo/${f.fId}" >查看详情</a>
 					</td>
 				</tr>
 			</c:forEach>
-			
-			
 		</table>
 	</div>	
 	</center>

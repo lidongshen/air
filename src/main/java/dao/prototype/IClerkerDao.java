@@ -3,6 +3,8 @@ package dao.prototype;
 
 import java.util.List;
 
+import entity.Booking;
+import entity.Clerker;
 import entity.Flight;
 import entity.User;
 
@@ -19,7 +21,8 @@ public interface IClerkerDao {
 		//修改用户信息
 		void Modify(int uid);
 		//订票
-		void orderTicket(int uid,int cid,int fid);
+		void orderTicket(int cid,int fid);
+        List<Booking> findBooking(int cid,int fid);
 		//出票
 		void drawerTicket(int uId,int cid,int fId);
 		
@@ -31,5 +34,13 @@ public interface IClerkerDao {
 		
 		//付账update
 		void pay(int uId, int fId);
+		
+		List<Clerker> findCPager(int offset ,int pageSize);
+		List<Clerker> findCPager(int offset ,int pageSize,int bId);
+		int totalNum();
+		int totalNum(int bId);
+		int addC(Clerker c);
+		int deleteC(int id);
+		int upDateC(Clerker c);
 }
 
