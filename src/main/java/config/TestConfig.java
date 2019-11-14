@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  *
  */
 @Configuration
-@ComponentScan({"dao","service","controller","mapper"})
+@ComponentScan({"dao","service","controller"})
 @Import(DBConfig.class)
 @EnableAspectJAutoProxy
 public class TestConfig {

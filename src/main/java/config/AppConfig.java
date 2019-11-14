@@ -17,7 +17,7 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
  *
  */
 @Configuration
-@ComponentScan({"dao","service","controller","mapper"})
+@ComponentScan({"dao","service","controller"})
 @Import(DBConfig.class)
 @EnableAspectJAutoProxy
 //@EnableWebMvc
