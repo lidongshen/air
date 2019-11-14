@@ -5,7 +5,7 @@ layui.use(['table','form','util'],function() {
 		table.render({
 				elem : '#demo',
 				height : 500,
-				url : 'mcseach',
+				url : 'museach',
 				page : true,
 				cellMinWidth : 80,
 				method : 'post',

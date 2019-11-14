@@ -52,7 +52,7 @@
 						<a href="javascript:;">用户管理</a>
 						<dl class="layui-nav-child">
 							<dd>
-								<a href="javascript:;" target="HK">查看用户信息</a>
+								<a href="muindex" target="HK">查看用户信息</a>
 							</dd>
 						</dl>
 					</li>

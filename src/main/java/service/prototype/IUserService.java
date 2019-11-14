@@ -34,4 +34,7 @@ public interface IUserService {
 	boolean isLogin(String username, String password);
 
 	boolean isOutTicket(int uId, int fId);
+	
+	List<User> seachUserPage(int pageNo ,int pageSize);
+	int totalItems();
 }

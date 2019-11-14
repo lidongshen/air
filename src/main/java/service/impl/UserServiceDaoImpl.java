@@ -71,5 +71,14 @@ public class UserServiceDaoImpl implements IUserService{
 		return userDao.findUser(username);
 	}
 	
-
+	@Override
+	public List<User> seachUserPage(int pageNo ,int pageSize) {
+		return userDao.findUPager((pageNo-1)*pageSize, pageSize);
+	}
+	
+	@Override
+	public int totalItems() {
+		return userDao.totalNum();
+	}
+	
 }

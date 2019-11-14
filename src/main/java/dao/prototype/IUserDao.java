@@ -45,6 +45,6 @@ public interface IUserDao {
 	
 	void saveOrUpdateOutTicket(int uId,int fId,int oIsout);
 	
-	
-	
+	List<User> findUPager(int offset ,int pageSize);
+	int totalNum();
 }

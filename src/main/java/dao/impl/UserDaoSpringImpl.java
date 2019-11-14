@@ -144,7 +144,13 @@ public class UserDaoSpringImpl implements IUserDao{
 				new BeanPropertyRowMapper<User>(User.class));
 	}
 	
-	
-	
+	@Override
+	public List<User> findUPager(int offset ,int pageSize) {
+		return jdbcTemplate.query("select * from user limit ?,?",new Object[] {offset ,pageSize} ,new BeanPropertyRowMapper<User>(User.class));
+	}
+	@Override
+	public int totalNum() {
+		return jdbcTemplate.queryForObject("select count(*) from user", Integer.class);
+	}
 
 }
