@@ -30,11 +30,11 @@ public class BossDaoImpl implements IBossDao {
     public List<BusinesspointAndNum> searchBuAndNum(String year) {
         String sql = "select bu.b_name,IFNULL(num,0)as b_num,IFNULL(ddd,'大型错误，年份未指定，票数未指定')as b_date\n" +
                 "from businesspoint bu LEFT JOIN \n" +
-                "(select fb.f_id,count(*) as num,YEAR(b.b_date) as ddd\n" +
-                "FROM fb JOIN booking b ON b.f_id = fb.f_id  \n" +
+                "(select fb.b_id,count(*) as num,YEAR(b.b_date) as ddd\n" +
+                "FROM fb fb JOIN booking b ON b.f_id = fb.f_id  \n" +
                 "WHERE YEAR(b.b_date) LIKE ?\n" +
                 "GROUP BY fb.f_id,YEAR(b.b_date)) t2 \n" +
-                "ON bu.b_id = t2.f_id;";
+                "ON bu.b_id = t2.b_id;";
         List<BusinesspointAndNum> bans = jdbcTemplate.query(sql, new Object[]{year}, new BeanPropertyRowMapper<BusinesspointAndNum>(BusinesspointAndNum.class));
 
         return bans;
