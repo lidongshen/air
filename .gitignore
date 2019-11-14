@@ -5,8 +5,8 @@
 .mymetadata
 .metadata
 .DS_Store
-.properties
-.xml
+*.properties
+*.xml
 
 # java
 *.class
