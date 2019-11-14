@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import dao.prototype.IClerkerDao;
+import entity.Booking;
 import entity.Clerker;
 import entity.Flight;
 import entity.User;
@@ -62,9 +63,12 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 
 	@Override
 	//订票
-	public void orderTicket(int uid,int cid, int fid) {
-		
-		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values("+uid+","+cid+","+fid+",0)");
+	public void orderTicket(int cid, int fid) {
+		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values(0,"+cid+","+fid+",0)");
+	}
+	//订单查询
+	public List<Booking> findBooking(int cid,int fid) {
+		return jdbcTemplate.query("SELECT * FROM  booking WHERE f_id=? and c_id=? ", new Object[] {cid,fid},new BeanPropertyRowMapper<Booking>(Booking.class));
 	}
 
 		@Override
@@ -113,7 +117,7 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 	public void Modify(int uid) {
 		jdbcTemplate.update("update ");
 	}
-
+	
 	@Override
 	public List<Clerker> findCPager(int offset ,int pageSize) {
 		return jdbcTemplate.query("select c.*,b.b_name from clerker c join businesspoint b on c.b_id=b.b_id limit ?,?",new Object[] {offset ,pageSize} ,new BeanPropertyRowMapper<Clerker>(Clerker.class));
@@ -149,8 +153,5 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 		return jdbcTemplate.update("update clerker set c_name=?,c_number=?,c_password=?,b_id=? where c_id=?",new Object[] {c.getcName(),c.getcNumber(),c.getcPassword(),c.getbId(),c.getcId()});
 	}
 
-	
-
-	
 }
 

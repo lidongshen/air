@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import config.TestConfig;
+import entity.Booking;
 import entity.Flight;
 import entity.User;
 import service.prototype.IClerkerService;
@@ -61,7 +62,11 @@ public class TestClerkerService {
 	}
 	@Test
 	public void testOrderTicket() {
-		 clerkerservice.orderTicket(1,100,1);
+		 clerkerservice.orderTicket(1,1);
+		 List<Booking> b = clerkerservice.findBooking(1, 1);
+		 for (Booking b1 : b) {
+				System.out.println(b1);
+			}
 	}
 	
 }

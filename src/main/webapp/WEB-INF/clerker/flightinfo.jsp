@@ -44,15 +44,17 @@ a {
 						<td>${f.fStarttime}</td>
 						<td>${f.fEndtime}</td>
 					</tr>
+					
 				</c:forEach>
 			</table>
 			<button>
-				<a href="#" onclick=clerkerLookFlight>订票</a>
+				 <a href="corderTicket"  id="commit" >订票</a>
+				 
 			</button>
 		</div>
 	</center>
 	<script type="text/javascript"
-		src="/airsys/assets/js/clerkerLookFlight.js"></script>
+		src="/airsys/assets/js/clerkerOrderTicket.js"></script>
 </body>
 
 </html>

@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import config.TestConfig;
 import dao.prototype.IClerkerDao;
+import entity.Booking;
 import entity.Flight;
 import entity.User;
 
@@ -67,7 +68,11 @@ public class TestClerkerDao {
 	}
 	@Test
 	public void testOrderTicket() {
-		 clerkerdao.orderTicket(1,1,1);
+		 clerkerdao.orderTicket(1,1);
+		 List<Booking> b = clerkerdao.findBooking(1, 1);
+			for (Booking b1 : b) {
+				System.out.println(b1);
+			}
 	}
 	@Test
 	public void testDrawerTicket() {
