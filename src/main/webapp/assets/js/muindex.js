@@ -2,6 +2,7 @@ layui.use(['table','form','util'],function() {
 		var table = layui.table;
 		var form = layui.form;
 		var util = layui.util;
+		var datasex;
 		table.render({
 				elem : '#demo',
 				height : 500,
@@ -53,7 +54,6 @@ layui.use(['table','form','util'],function() {
 							
 						} ] ],
 				parseData : function(res) { // res 即为原始返回的数据
-					total=res.total;
 					return {
 						"code" : 0, // 解析接口状态
 						"msg" : "", // 解析提示文本

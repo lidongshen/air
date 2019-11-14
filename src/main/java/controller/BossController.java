@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 public class BossController {
 
 
-    @Qualifier("IBossServiceImpl")
+    
     @Autowired
     private BossServiceImpl iBossService;
 

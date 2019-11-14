@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository("BossImpl")
+@Repository
 public class BossDaoImpl implements IBossDao {
     @Autowired
     private JdbcTemplate jdbcTemplate;

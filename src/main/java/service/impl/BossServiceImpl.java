@@ -1,18 +1,18 @@
 package service.impl;
 
-import com.alibaba.fastjson.JSON;
-import dao.prototype.IBossDao;
-import entity.BusinesspointAndNum;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
-import service.prototype.IBossService;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.alibaba.fastjson.JSON;
+
+import dao.prototype.IBossDao;
+import entity.BusinesspointAndNum;
+import service.prototype.IBossService;
+
 @Service
-@Repository("IBossServiceImpl")
 public class BossServiceImpl implements IBossService {
     @Autowired
     private IBossDao boss;
