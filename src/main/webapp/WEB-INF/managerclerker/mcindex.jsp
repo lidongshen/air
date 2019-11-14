@@ -21,17 +21,17 @@
 </style>
 </head>
 <body style="padding: 0 15px; box-sizing: border-box;">
-	<table id="demo" class="layui-hide" lay-filter="bu"></table>
+	
+	<div class="layui-form layui-form-item layui-form-pane" style="margin:15px 0 10px;">
+        <label class="layui-form-label">选择营业点</label>
+        <div class="layui-input-inline">
+            <select name="city" id="bId" lay-filter="bId" lay-verify="">
+            </select>
+        </div>
+    </div>
+	<table id="demo" class="layui-hide" lay-filter="mc"></table>
 	<script src="/airsys/assets/layui/layui.js"></script>
 	<script type="text/html" id="toolbarDemo">
-  		<div class="layui-inline">
-   			<select name="city" lay-verify="">
-  				<option value="">请选择一个城市</option>
-  				<option value="010">北京</option>
-  				<option value="021">上海</option>
-  				<option value="0571">杭州</option>
-			</select>  	
-  		 </div>
 		<div class="layui-inline" lay-event="add">
 			<i class="layui-icon layui-icon-add-1"></i>
 		</div>

@@ -34,10 +34,11 @@ public class WebInitializer implements WebApplicationInitializer{
 		servlet.addMapping("/");
 		servlet.setLoadOnStartup(1);
 		//添加字符编码的过滤器
-		FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
+		FilterRegistration.Dynamic encodingFilter =
+		servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
 		encodingFilter.setInitParameter("encoding", String.valueOf(StandardCharsets.UTF_8));
 		encodingFilter.setInitParameter("forceEncoding", "true");
-		encodingFilter.addMappingForServletNames(null, false, "/*");
+		encodingFilter.addMappingForUrlPatterns(null, false, "/*");
 	}
 
 }

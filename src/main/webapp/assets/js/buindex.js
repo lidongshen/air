@@ -86,7 +86,7 @@ layui.use(['table','form','util'],function() {
 		var layEvent = obj.event; // 获得 lay-event 对应的值（也可以是表头的event 参数对应的值）
 		var tr = obj.tr; // 获得当前行 tr 的 DOM 对象（如果有的话）
 		if (layEvent === 'del') { // 删除
-			layer.confirm('您确认删除本次航班吗？', {shade: [0.8, '#393D49'], shadeClose:true,},function(index) {
+			layer.confirm('您确认删除本站点吗？', {shade: [0.8, '#393D49'], shadeClose:true,},function(index) {
 				// 向服务端发送删除指令
 				$.ajax({
 					url:'delbu',
@@ -120,7 +120,7 @@ layui.use(['table','form','util'],function() {
 		} else if (layEvent === 'detail') { // 查看
 			layer.open({
 				  type: 2,
-				  title:'航班信息',
+				  title:'站点信息',
 				  content: 'lookbu',
 				  shade: [0.8, '#393D49'],
 				  shadeClose:true,
@@ -145,7 +145,7 @@ layui.use(['table','form','util'],function() {
 		
 			layer.open({
 				  type: 2,
-				  title:'修改航班',
+				  title:'修改站点信息',
 				  content: 'editbu',
 				  shade: [0.8, '#393D49'],
 				  shadeClose:true,
@@ -168,7 +168,7 @@ layui.use(['table','form','util'],function() {
 		    case 'add':
 		    	layer.open({
 					  type: 2,
-					  title:'添加航班信息',
+					  title:'添加站点',
 					  content: 'addbu',
 					  shade: [0.8, '#393D49'],
 					  shadeClose:true,

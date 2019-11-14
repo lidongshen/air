@@ -1,87 +1,123 @@
 package controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
+import entity.BusinessPoint;
+import entity.Clerker;
 import service.prototype.IBusinessPointService;
+import service.prototype.IClerkerService;
 
 @Controller
 public class ManagerClerkerController {
 	@Autowired
 	private IBusinessPointService bps;
+	@Autowired
+	private IClerkerService cs;
 	
 	@RequestMapping("/mcindex")
 	public String mcindex(){
 		return "managerclerker/mcindex";
 	}
-	/*
-	@RequestMapping(value="/buseach",produces="text/html;charset=utf-8")
+	
+	@RequestMapping(value="/buall",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String seachBu(int page, int limit) {
-		List<BusinessPoint> buPage = bps.buPage(page, limit);
-		int totalItems = bps.totalItems();
+	public String mcAll(){
+		List<BusinessPoint> buAll = bps.seachBuAll();
+		
+		return JSON.toJSONString(buAll);
+	}
+	
+	
+	@RequestMapping(value="/mcseach",produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String seachMc(int page, int limit) {
+		List<Clerker> seachClerkerPage = cs.seachClerkerPage(page, limit);
+		int totalItems = cs.totalItems();
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("total", totalItems);
-		map.put("data", buPage);
+		map.put("data", seachClerkerPage);
 		return JSON.toJSONString(map);
 	}
 	
-	@RequestMapping(value="/delbu",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/buselect",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String delBu(int bId) {
-		int delBu= bps.delBu(bId);
-		if(delBu>0) {
+	public String buSelect(int page, int limit,int bId) {
+		if(bId==0) {
+			return seachMc(page, limit);
+		}
+		List<Clerker> seachClerkerPage = cs.seachClerkerPage(page, limit,bId);
+		int totalItems = cs.totalItems(bId);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("total", totalItems);
+		map.put("data", seachClerkerPage);
+		return JSON.toJSONString(map);
+	}
+	
+	@RequestMapping(value="/delmc",produces="text/html;charset=utf-8")
+	@ResponseBody
+	public String delMc(int cId) {
+		int delC= cs.delC(cId);
+		if(delC>0) {
 			return "ok";
 		}
 		return "no";
 	}
-	@RequestMapping(value="/delbuAll",produces="text/html;charset=utf-8")
+	
+	@RequestMapping(value="/delmcAll",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String delBuAll(int[] data) {
+	public String delMcAll(int[] data) {
 		for(int i=0;i<data.length;i++) {
-			int delBu = bps.delBu(data[i]);
-			if(delBu<=0) {
+			int delC = cs.delC(data[i]);
+			if(delC<=0) {
 				return "no";
 			}
 		}
 		return "ok";
 	}
 	
-	@RequestMapping("/lookbu")
-	public String lookBu() {
-		return "businesspoint/lookbu";
+	@RequestMapping("/lookmc")
+	public String lookMc() {
+		return "managerclerker/lookmc";
 	}
 	
-	@RequestMapping("/addbu")
+	@RequestMapping("/addmc")
 	public String addBu() {
-		return "businesspoint/addbu";
+		return "managerclerker/addmc";
 	}
 	
-	@RequestMapping(value="/addbusinesspoint",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/addmclerker",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String addBu(String bName,String bProvince,String bCity,String bPhone) {
-		BusinessPoint bu = new BusinessPoint(bName,bProvince,bCity,bPhone);
-		int addBu = bps.addBu(bu);
-		if(addBu>0) {
+	public String addC(String cName,String cNumber,String cPassword,int bId) {
+		Clerker clerker = new Clerker(cName,cNumber,cPassword,bId);
+		int addC = cs.insertC(clerker);
+		if(addC>0) {
 			return "ok";
 		}
 		return "no";
 	}
 	
-	@RequestMapping("/editbu")
-	public String editBu() {
-		return "businesspoint/editbu";
+	@RequestMapping("/editmc")
+	public String editMc() {
+		return "managerclerker/editmc";
 	}
 	
-	@RequestMapping(value="/editbusinesspoint",produces="text/html;charset=utf-8")
+	@RequestMapping(value="/editclerker",produces="text/html;charset=utf-8")
 	@ResponseBody
-	public String editF(int bId,String bName,String bProvince,String bCity,String bPhone) {
-		BusinessPoint bu = new BusinessPoint(bId,bName,bProvince,bCity,bPhone);
-		int addBu = bps.modify(bu);
-		if(addBu>0) {
+	public String editF(int cId,String cName,String cNumber,String cPassword,int bId) {
+		 Clerker clerker = new Clerker(cId,cName,cNumber,cPassword,bId);
+		int addMc = cs.modify(clerker);
+		if(addMc>0) {
 			return "ok";
 		}
 		return "no";
-	}*/
+	}
 }

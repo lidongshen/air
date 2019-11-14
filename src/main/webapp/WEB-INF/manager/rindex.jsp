@@ -38,7 +38,7 @@
 								<a href="findex" target="HK">航班管理</a>
 							</dd>
 							<dd>
-								<a href="javascript:;" target="HK">营业员管理</a>
+								<a href="mcindex" target="HK">营业员管理</a>
 							</dd>
 							<dd>
 								<a href="buindex" target="HK">营业网点管理</a>

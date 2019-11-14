@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import dao.prototype.IClerkerDao;
+import entity.Clerker;
 import entity.Flight;
 import entity.User;
 @Repository("ClerkerDaoJdbcImpl")
@@ -112,5 +113,44 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 	public void Modify(int uid) {
 		jdbcTemplate.update("update ");
 	}
+
+	@Override
+	public List<Clerker> findCPager(int offset ,int pageSize) {
+		return jdbcTemplate.query("select c.*,b.b_name from clerker c join businesspoint b on c.b_id=b.b_id limit ?,?",new Object[] {offset ,pageSize} ,new BeanPropertyRowMapper<Clerker>(Clerker.class));
+	}
+	
+	@Override
+	public List<Clerker> findCPager(int offset, int pageSize, int bId) {
+		return jdbcTemplate.query("select c.*,b.b_name from clerker c join businesspoint b on c.b_id=b.b_id where c.b_id=? limit ?,?",new Object[] {bId,offset ,pageSize} ,new BeanPropertyRowMapper<Clerker>(Clerker.class));
+	}
+	
+	@Override
+	public int totalNum() {
+		return jdbcTemplate.queryForObject("select count(*) from clerker", Integer.class);
+	}
+	
+	@Override
+	public int totalNum(int bId) {
+		return jdbcTemplate.queryForObject("select count(*) from clerker where b_id="+bId, Integer.class);
+	}
+	
+	@Override
+	public int addC(Clerker c) {
+		return jdbcTemplate.update("insert into clerker(c_name,c_number,c_password,b_id) values(?,?,?,?)",new Object[] {c.getcName(),c.getcNumber(),c.getcPassword(),c.getbId()});
+	}
+
+	@Override
+	public int deleteC(int id) {
+		return jdbcTemplate.update("delete from clerker where c_id="+id);
+	}
+
+	@Override
+	public int upDateC(Clerker c) {
+		return jdbcTemplate.update("update clerker set c_name=?,c_number=?,c_password=?,b_id=? where c_id=?",new Object[] {c.getcName(),c.getcNumber(),c.getcPassword(),c.getbId(),c.getcId()});
+	}
+
+	
+
+	
 }
 

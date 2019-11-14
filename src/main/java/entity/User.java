@@ -1,7 +1,5 @@
 package entity;
 
-import java.util.Date;
-
 /**
  * 用户
  * @author s

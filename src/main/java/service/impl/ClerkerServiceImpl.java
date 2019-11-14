@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import dao.prototype.IClerkerDao;
+import entity.Clerker;
 import entity.Flight;
 import entity.User;
 import service.prototype.IClerkerService;
@@ -55,5 +56,40 @@ public class ClerkerServiceImpl implements IClerkerService {
 	public void orderTicket(int uid, int cid, int fid) {
 		clerkerdao.orderTicket(uid, cid, fid);
 		
+	}
+
+	@Override
+	public List<Clerker> seachClerkerPage(int pageNO ,int pageSize) {
+		return clerkerdao.findCPager((pageNO-1)*pageSize, pageSize);
+	}
+	
+	@Override
+	public List<Clerker> seachClerkerPage(int pageNO, int pageSize, int bId) {
+		return clerkerdao.findCPager((pageNO-1)*pageSize, pageSize,bId);
+	}
+	
+	@Override
+	public int totalItems() {
+		return clerkerdao.totalNum();
+	}
+
+	@Override
+	public int totalItems(int bId) {
+		return clerkerdao.totalNum(bId);
+	}
+	
+	@Override
+	public int insertC(Clerker c) {
+		return clerkerdao.addC(c);
+	}
+
+	@Override
+	public int delC(int id) {
+		return clerkerdao.deleteC(id);
+	}
+
+	@Override
+	public int modify(Clerker c) {
+		return clerkerdao.upDateC(c);
 	}
 }
