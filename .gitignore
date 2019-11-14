@@ -6,7 +6,7 @@
 .metadata
 .DS_Store
 *.properties
-*.xml
+
 
 # java
 *.class
