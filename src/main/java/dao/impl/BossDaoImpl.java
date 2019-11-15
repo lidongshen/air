@@ -33,7 +33,7 @@ public class BossDaoImpl implements IBossDao {
                 "(select fb.b_id,count(*) as num,YEAR(b.b_date) as ddd\n" +
                 "FROM fb fb JOIN booking b ON b.f_id = fb.f_id  \n" +
                 "WHERE YEAR(b.b_date) LIKE ?\n" +
-                "GROUP BY fb.f_id,YEAR(b.b_date)) t2 \n" +
+                "GROUP BY fb.b_id,YEAR(b.b_date)) t2 \n" +
                 "ON bu.b_id = t2.b_id;";
         List<BusinesspointAndNum> bans = jdbcTemplate.query(sql, new Object[]{year}, new BeanPropertyRowMapper<BusinesspointAndNum>(BusinesspointAndNum.class));
 

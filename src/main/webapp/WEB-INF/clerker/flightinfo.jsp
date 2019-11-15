@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta content="text/html;charset=utf-8">
@@ -18,7 +17,6 @@ a {
 	text-decoration: none;
 }
 </style>
-
 </head>
 <body>
 	<h3 align="center">航班信息</h3>
@@ -44,13 +42,12 @@ a {
 						<td>${f.fStarttime}</td>
 						<td>${f.fEndtime}</td>
 					</tr>
-					
+				</table>
+					<button type="button" fid=${f.fId} id="commit">订票</button>
 				</c:forEach>
-			</table>
-			<button>
-				 <a href="corderTicket"  id="commit" >订票</a>
-				 
-			</button>
+		
+			
+			
 		</div>
 	</center>
 	<script type="text/javascript"

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper.IOrderReSeatNumMapper">
+	<select id="findPage" resultType="MyOrder">
+		select f.f_id,f.f_name,f.f_fromcity,f.f_tocity,IFNULL(f.f_seatnum,0) as f_seatnum,IFNULL(book.seatnum,0) as seatnum,f.f_starttime,f.f_endtime
+		from fb fb
+		right join businesspoint bu 
+		on fb.b_id=bu.b_id
+		left JOIN flight f
+		ON f.f_id=fb.f_id
+		left JOIN (select fb.f_id as fid,count(*) as seatnum
+		from booking bo
+		right join fb fb
+		on fb.f_id=bo.f_id
+		GROUP BY fb.b_id,fb.f_id) book
+		on book.fid=f.f_id 
+		where bu.b_id=#{bId} limit #{offset},#{pageSize}
+	</select>
+	<select id="totalNum" parameterType="int" resultType="int">
+		select count(*) from fb where b_id=#{bId}
+	</select>
+	
+	
+</mapper> 

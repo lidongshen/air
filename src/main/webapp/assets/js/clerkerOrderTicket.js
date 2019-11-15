@@ -1,18 +1,18 @@
-$(function() {
-	$("#commit").on('click',function(){
-		var data="fId="+$("#fId").val();
+$("#commit").on('click',function(){
+		var fId=$("#commit").attr("fid")
 		$.ajax({
-			url:"corder",
-			data:data,
-			type:'post',
+			url:'/airsys/corder',
+			data:{"fId":fId},
 			success:function(e){
-				if(e=='ok'){
-					alert(1);
+				if(e=="ok"){
+					alert(1)
 				}else{
-					alert("用户名或者密码错误")
-					window.location.href="clogin";
+					alert(2)
 				}
 			}
 		})
-	})
 })
+
+/*function clerkerOrderTicket(fId){
+	window.location.href="corderTicket/{fId}";
+}*/

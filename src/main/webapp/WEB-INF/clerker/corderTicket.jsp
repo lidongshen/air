@@ -3,8 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <% 
-	String uId = session.getAttribute("uId").toString(); 
-	out.print(uId);
+	String cId = session.getAttribute("cId").toString(); 
+	out.print(cId);
 %>
 <!doctype html>
 <html lang="en">
@@ -21,7 +21,7 @@
     <div class="zong">
         <form method="post" id="form1" action="/airsys/user/payTicket/${orderFlight.fId}/<%=session.getAttribute("uId") %>" >
             <center><h1 class="h1">航空航天订单</h1></center>
-            <center><h3>${f.fName }</h3></center>
+            <center><h3>${f.fName}</h3></center>
             <div><span>${f.fFromcity}</span></div>
             <div><span>${f.fTocity}</span></div>
             <div><span>${f.fStarttime}</span></div>

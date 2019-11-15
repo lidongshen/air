@@ -16,6 +16,9 @@
 			text-decoration: none;
 		}
 	</style>
+	<%
+	out.println(session.getAttribute("cId"));
+	%>
 </head>
 <body>
 	<h3 align="center">航班信息</h3>
@@ -49,7 +52,6 @@
 		</table>
 	</div>	
 	</center>
-	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>
 
 </html>
