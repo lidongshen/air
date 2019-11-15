@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import entity.Booking;
 import entity.Flight;
 import entity.User;
 import service.prototype.IClerkerService;
 
 @Controller
-
 public class ClerkerController {
 	@Autowired
 	private IClerkerService clerkerService;
@@ -54,15 +52,14 @@ public class ClerkerController {
 	
 	@RequestMapping("/corder")
 	@ResponseBody
-	public String corder(HttpServletRequest request,@PathVariable("fId") int fId) {
-   HttpSession session=request.getSession();
-   int cId=Integer.parseInt(session.getAttribute("cId").toString()); 
-		System.out.println(cId);
-		System.out.println(fId);
-		clerkerService.orderTicket(cId, fId);
+	public String corder(HttpServletRequest request) {
+		HttpSession session=request.getSession(true);
+		String fid = request.getParameter("fId");
+		int fId = Integer.parseInt(fid);
+		int cId=Integer.parseInt(session.getAttribute("cId").toString());
+		System.out.println(cId+"-"+fId);
 		return "ok";
-	}
-	/*@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
+	}/*@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachFindOrder(HttpSession session,@PathVariable("fId") int fId) {
 		int cId = (int) session.getAttribute("cId");
 		System.out.println(cId);

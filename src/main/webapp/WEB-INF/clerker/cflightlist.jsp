@@ -52,7 +52,6 @@
 		</table>
 	</div>	
 	</center>
-	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>
 
 </html>

@@ -42,7 +42,7 @@
 					<td>${u.uAge}</td>
 					<td>${u.uSex}</td>
 					<td>
-						<a href="#" onclick=clerkerLookFlight>查看详情</a>
+						<!-- <a href="#" onclick="clerkerLookFlight(fId)">查看详情</a> -->
 					</td>
 				</tr>
 			</c:forEach>

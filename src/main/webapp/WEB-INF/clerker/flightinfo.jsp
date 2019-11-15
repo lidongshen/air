@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
-<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta content="text/html;charset=utf-8">
@@ -44,9 +43,7 @@ a {
 						<td>${f.fEndtime}</td>
 					</tr>
 				</table>
-					<button>
-				 <a href="#" id="commit">订票</a>
-					</button>
+					<button type="button" fid=${f.fId} id="commit">订票</button>
 				</c:forEach>
 		
 			

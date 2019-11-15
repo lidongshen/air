@@ -1,19 +1,18 @@
-$(function() {
-	$("#commit").on('click',function(){
-		alert(1);
+$("#commit").on('click',function(){
+		var fId=$("#commit").attr("fid")
 		$.ajax({
-			url:"corder",
-			type:'post',
+			url:'/airsys/corder',
+			data:{"fId":fId},
 			success:function(e){
-				if(e=='ok'){
-					alert(2);
+				if(e=="ok"){
+					alert(1)
 				}else{
-					alert(3)
+					alert(2)
 				}
 			}
 		})
-		})
 })
+
 /*function clerkerOrderTicket(fId){
 	window.location.href="corderTicket/{fId}";
 }*/
