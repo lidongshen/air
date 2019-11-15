@@ -43,7 +43,7 @@ public class ClerkerController {
 		String cname = request.getParameter("cname");
 		String cpwd = request.getParameter("cpwd");
 		int findClerker = clerkerService.findClerker(cname, cpwd);
-		System.out.println(findClerker);
+
 		if(findClerker==0) {
 			return "no";
 		}
@@ -54,14 +54,15 @@ public class ClerkerController {
 	
 	@RequestMapping("/corder")
 	@ResponseBody
-	public String corder(HttpSession session,@PathVariable("fId") int fId) {
-		int cId = (int) session.getAttribute("cId");
+	public String corder(HttpServletRequest request,@PathVariable("fId") int fId) {
+   HttpSession session=request.getSession();
+   int cId=Integer.parseInt(session.getAttribute("cId").toString()); 
 		System.out.println(cId);
 		System.out.println(fId);
 		clerkerService.orderTicket(cId, fId);
 		return "ok";
 	}
-	@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
+	/*@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachFindOrder(HttpSession session,@PathVariable("fId") int fId) {
 		int cId = (int) session.getAttribute("cId");
 		System.out.println(cId);
@@ -70,7 +71,7 @@ public class ClerkerController {
 		List<Booking> f = clerkerService.findBooking(cId, fId);
 		mv.addObject("f",f);
 		return mv;
-	} 
+	} */
 	
 	@RequestMapping(value = "/cflightlist",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachFlightAll() {

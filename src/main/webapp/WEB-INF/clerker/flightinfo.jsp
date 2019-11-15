@@ -18,7 +18,6 @@ a {
 	text-decoration: none;
 }
 </style>
-
 </head>
 <body>
 	<h3 align="center">航班信息</h3>
@@ -44,13 +43,14 @@ a {
 						<td>${f.fStarttime}</td>
 						<td>${f.fEndtime}</td>
 					</tr>
-					
+				</table>
+					<button>
+				 <a href="#" id="commit">订票</a>
+					</button>
 				</c:forEach>
-			</table>
-			<button>
-				 <a href="corderTicket"  id="commit" >订票</a>
-				 
-			</button>
+		
+			
+			
 		</div>
 	</center>
 	<script type="text/javascript"
