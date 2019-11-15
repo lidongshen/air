@@ -3,7 +3,7 @@ var pageNo;
 var total;
 var datalength;
 var formdata;
-$(document).queue([function(){	
+
 	$.ajax({
 		url:'buall',
 		success:function(e){
@@ -14,7 +14,7 @@ $(document).queue([function(){
 			}
 			$("#bId").html(select)
 		}})
-}])
+
 	
 	layui.use(['table','form','util'],function() {
 			var table = layui.table;

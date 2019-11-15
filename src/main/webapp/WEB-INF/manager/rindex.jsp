@@ -44,7 +44,7 @@
 								<a href="buindex" target="HK">营业网点管理</a>
 							</dd>
 							<dd>
-								<a href="javascript:;" target="HK">统计信息与报表</a>
+								<a href="moindex" target="HK">航班人数统计</a>
 							</dd>
 						</dl>
 					</li>
