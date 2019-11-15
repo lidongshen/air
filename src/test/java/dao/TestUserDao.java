@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import config.TestConfig;
 import dao.prototype.IUserDao;
 import entity.Flight;
+import entity.Trip;
 import entity.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -45,8 +46,6 @@ public class TestUserDao {
 	}
 	
 	
-	
-	
 	@Test
 	public void orderTicket() {
 		userDao.orderTicket(1, 5);
@@ -68,10 +67,17 @@ public class TestUserDao {
 		userDao.refundTicket(1, 5);
 	}
 	
-	
 	@Test
 	public void testFindU() {
 		User findUser = userDao.findUser("10001");
 		System.out.println(findUser);
+	}
+	
+	@Test
+	public void testfindTrip() {
+		List<Trip> findTrip = userDao.findTrip(1);
+		for (Trip trip : findTrip) {
+			System.out.println(trip);
+		}
 	}
 }

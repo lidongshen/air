@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dao.prototype.IUserDao;
 import entity.Flight;
+import entity.Trip;
 import entity.User;
 import service.prototype.IUserService;
 
@@ -72,6 +73,11 @@ public class UserServiceDaoImpl implements IUserService{
 	}
 	
 	@Override
+	public User findUser(int uId) {
+		return userDao.findUser(uId);
+	}
+	
+	@Override
 	public List<User> seachUserPage(int pageNo ,int pageSize) {
 		return userDao.findUPager((pageNo-1)*pageSize, pageSize);
 	}
@@ -79,6 +85,11 @@ public class UserServiceDaoImpl implements IUserService{
 	@Override
 	public int totalItems() {
 		return userDao.totalNum();
+	}
+
+	@Override
+	public List<Trip> findTrip(int uId) {
+		return userDao.findTrip(uId);
 	}
 	
 }

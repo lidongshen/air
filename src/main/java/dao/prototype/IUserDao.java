@@ -3,6 +3,7 @@ package dao.prototype;
 import java.util.List;
 
 import entity.Flight;
+import entity.Trip;
 import entity.User;
 /**
  * IUserDao接口
@@ -11,6 +12,7 @@ import entity.User;
  */
 public interface IUserDao {
 	
+	User findUser(int id);
 	User findUser(String name);
 	//订票
 	void orderTicket(int uId,int fId);
@@ -46,5 +48,11 @@ public interface IUserDao {
 	void saveOrUpdateOutTicket(int uId,int fId,int oIsout);
 	
 	List<User> findUPager(int offset ,int pageSize);
+	
 	int totalNum();
+	
+	List<Trip> findTrip(int uId);
+	
+	
+	
 }

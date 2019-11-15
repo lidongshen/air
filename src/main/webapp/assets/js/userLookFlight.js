@@ -4,10 +4,10 @@ function userLookFlight(fId){
 		success:function(e){
 			var result=e.replace(/\s/g, "");
 			console.log(result);
-			if(result=="ok"){
-				window.location.href="/airsys/user/userLookFlight/"+fId;
-			}else{
+			if(!(result=="ok")){
 				window.location.href="/airsys/user/login";
+			}else{
+				window.location.href="/airsys/user/userLookFlight/"+fId;
 			}
 		}
 	})

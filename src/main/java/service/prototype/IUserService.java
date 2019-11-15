@@ -3,10 +3,12 @@ package service.prototype;
 import java.util.List;
 
 import entity.Flight;
+import entity.Trip;
 import entity.User;
 
 public interface IUserService {
 	User findUser(String username);
+	User findUser(int uId);
 	// 订票
 	void orderTicket(int uId, int fId);
 
@@ -36,5 +38,8 @@ public interface IUserService {
 	boolean isOutTicket(int uId, int fId);
 	
 	List<User> seachUserPage(int pageNo ,int pageSize);
+	
 	int totalItems();
+	
+	List<Trip> findTrip(int uId);
 }

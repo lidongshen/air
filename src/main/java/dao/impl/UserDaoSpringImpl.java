@@ -152,5 +152,20 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int totalNum() {
 		return jdbcTemplate.queryForObject("select count(*) from user", Integer.class);
 	}
+	@Override
+	public List<Trip> findTrip(int uId) {
+		return jdbcTemplate.query(
+				"select * from trip where u_id = ?", 
+				new Object[] {uId},
+				new BeanPropertyRowMapper<Trip>(Trip.class));
+	}
+	@Override
+	public User findUser(int id) {
+		return jdbcTemplate.queryForObject(
+				"select * from user where u_id = ?",
+				new Object[]{id},
+				new BeanPropertyRowMapper<User>(User.class));
+	}
+	
 
 }

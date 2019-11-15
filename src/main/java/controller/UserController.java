@@ -10,9 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.alibaba.fastjson.JSON;
+
 import entity.Flight;
+import entity.Trip;
 import entity.User;
 import service.prototype.IFlightService;
 import service.prototype.IUserService;
@@ -110,6 +114,21 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("user/success");
 		return mv;
 	}
-	
+	@RequestMapping(value="/triplist",produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String allTrip(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int uId = Integer.parseInt(session.getAttribute("uId").toString());
+		List<Trip> trip = userService.findTrip(uId);
+		return JSON.toJSONString(trip);
+	}
+	@RequestMapping(value="/userlist",produces = "text/plain;charset=utf-8")
+	@ResponseBody
+	public String myUser(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		int uId = Integer.parseInt(session.getAttribute("uId").toString());
+		User user = userService.findUser(uId);
+		return JSON.toJSONString(user);
+	}
 }
 

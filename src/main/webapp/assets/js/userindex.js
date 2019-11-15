@@ -69,9 +69,76 @@ window.onload = function () {
 	
 	
 	$.ajax({
-		url:"",
+		url:"/airsys/user/triplist",
+		success:function(e){
+			var result=e.replace(/\s/g, "");
+			var jsonData=eval("("+result+")")
+			console.log(jsonData)
+			for(var i in jsonData){
+			$(".mytablee").append("<tr>" +
+					"<td>"+jsonData[i].uId+"</td>" +
+					"<td>"+jsonData[i].fId+"</td>"+
+					"<td>"+jsonData[i].fId+"</td>"+
+					"<td>"+jsonData[i].uIspay+"</td>"+
+					"</tr>")
+			}
+		}
 	})
 	
-	$(".mytablee").html();
+	
+    $.ajax({
+    	url:"/airsys/user/userlist",
+    	success:function(e){
+			var result=e.replace(/\s/g, "");
+			
+			var jsonData=eval("("+result+")")
+			
+				$(".mytableee").append("<tr>" +
+						"<td>"+jsonData.uName+"</td>" +
+						"<td>"+jsonData.uAge+"</td>"+
+						"<td>"+jsonData.uSex+"</td>"+
+						"<td>"+jsonData.uPhone+"</td>"+
+						"<td>"+jsonData.uPassword+"</td>"+
+						"<td>"+jsonData.uNum+"</td>"+
+						"</tr>")
+			
+    	}
+    })
     
+    $(".userhistory").on("click",function(){
+    	$.ajax({
+    		url:"/airsys/user/checksession",
+    		success:function(e){
+    			var result=e.replace(/\s/g, "");
+    			console.log(result);
+    			if(!(result=="ok")){
+    				window.location.href="/airsys/user/login";
+    			}
+    		}
+    	})
+    })
+    $(".usermessage").on("click",function(){
+    	$.ajax({
+    		url:"/airsys/user/checksession",
+    		success:function(e){
+    			var result=e.replace(/\s/g, "");
+    			console.log(result);
+    			if(!(result=="ok")){
+    				window.location.href="/airsys/user/login";
+    			}
+    		}
+    	})
+    })
+    $(".userchange").on("click",function(){
+    	$.ajax({
+    		url:"/airsys/user/checksession",
+    		success:function(e){
+    			var result=e.replace(/\s/g, "");
+    			console.log(result);
+    			if(!(result=="ok")){
+    				window.location.href="/airsys/user/login";
+    			}
+    		}
+    	})
+    })
 }

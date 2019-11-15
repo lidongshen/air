@@ -36,8 +36,9 @@
     <div class="layui-tab">
   <ul class="layui-tab-title">
     <li class="layui-this">搜索页面<>
-    <li>历史订单<>
-    <li>用户信息<>
+    <li class="userhistory">历史订单<>
+    <li class="usermessage">用户信息<>
+    <li class="userchange">修改用户信息<>
     <li class = "exitbtn">退出登录<>
     <li class = "loginbtn"  style="display:none">登录<>
   </ul>
@@ -77,15 +78,30 @@
     	<div class="container">
     		<table class="table table-bordered mytablee">
     			<tr>
-    				<th>姓名</th>
-    				<th>年龄</th>
-    				<th>性别</th>
-    				<th>手机号</th>
-    				<th>密码</th>
-    				<th>身份证号</th>
+    				<th class="username">姓名</th>
+    				<th class="userstart">出发时间/地</th>
+    				<th class="userend">到达时间/地</th>
+    				<th class="userispay">已过期/已生效</th>
     			</tr>
     			
-    			
+    		</table>
+    	</div>
+    
+    
+    </div>
+    <div class="layui-tab-item">
+    	
+    	
+    	<div class="container">
+    		<table class="table table-bordered mytableee">
+    			<tr>
+    				<th class="username">姓名</th>
+    				<th class="userage">年龄</th>
+    				<th class="userName">性别</th>
+    				<th class="userphone">手机号</th>
+    				<th class="userpassword">密码</th>
+    				<th class="usernum">身份证号</th>
+    			</tr>
     			
     		</table>
     	</div>
@@ -95,7 +111,7 @@
     <div class="layui-tab-item">
     
     
-    
+    	
     
     
     </div>
