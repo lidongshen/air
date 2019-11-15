@@ -2,7 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
-	session.removeAttribute("userlogin");
-	session.removeAttribute("uId");
+	session.invalidate();
 	out.println("ok");
 %>

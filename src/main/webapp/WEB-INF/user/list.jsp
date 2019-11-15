@@ -45,7 +45,7 @@
 					</td>
 					<td>${f.fEndtime}</td>
 					<td>
-						<a href="#" onclick=userLookFlight(${f.fId}) class="loginbtn">查看详情</a>
+						<a href="#" onclick=userLookFlight(${f.fId})>查看详情</a>
 					</td>
 				</tr>
 			</c:forEach>

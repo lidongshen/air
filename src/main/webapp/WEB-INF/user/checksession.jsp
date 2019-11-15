@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true" %>
 <%
-if(!"yes".equals(session.getAttribute("userlogin"))){
+if("yes".equals(session.getAttribute("userlogin"))){
 	out.println("ok");
 }
 %>

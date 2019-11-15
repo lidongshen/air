@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
+<% out.print(session.getAttribute("uId")); %>
 
 <!doctype html>
 <html lang="en">
@@ -70,8 +71,34 @@
     
     
     </div>
-    <div class="layui-tab-item">内容2</div>
-    <div class="layui-tab-item">内容3</div>
+    <div class="layui-tab-item">
+    
+    
+    	<div class="container">
+    		<table class="table table-bordered mytablee">
+    			<tr>
+    				<th>姓名</th>
+    				<th>年龄</th>
+    				<th>性别</th>
+    				<th>手机号</th>
+    				<th>密码</th>
+    				<th>身份证号</th>
+    			</tr>
+    			
+    			
+    			
+    		</table>
+    	</div>
+    
+    
+    </div>
+    <div class="layui-tab-item">
+    
+    
+    
+    
+    
+    </div>
     
   </div>
 </div>
