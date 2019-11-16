@@ -65,6 +65,12 @@ public class UserController {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("uId", u.getuId());
 			session.setAttribute("userlogin", "yes");
+			session.setAttribute("uNum", u.getuNum());
+			session.setAttribute("uPhone", u.getuPhone());
+			session.setAttribute("uPassword", u.getuPassword());
+			session.setAttribute("uName", u.getuName());
+			session.setAttribute("uAge", u.getuAge());
+			session.setAttribute("uSex", u.getuSex());
 		}else {
 			mv = new ModelAndView("login/ulogin");
 		}

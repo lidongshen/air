@@ -2,8 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<% out.print(session.getAttribute("uId")); %>
-
+<% 
+out.println(session.getAttribute("uId")); 
+%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -109,11 +110,17 @@
     
     </div>
     <div class="layui-tab-item">
-    
-    
-    	
-    
-    
+    	<div class="container">
+    		<div class="userchangee">   
+    		 	姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：<input type="text" value=<%=session.getAttribute("uName") %>></input><br>
+    		 	年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：<input type="text" value=<%=session.getAttribute("uAge") %>></input><br>
+    		 	性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：<input type="text" value=<%=session.getAttribute("uSex") %>></input><br>
+    		 	手&nbsp;&nbsp;机&nbsp;&nbsp;号：<input type="text" value=<%=session.getAttribute("uPhone") %>></input><br>
+    		 	身份证号：<input type="text" disabled value=<%=session.getAttribute("uNum") %>></input><br>
+    		 	密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input type="text" value=<%=session.getAttribute("uPassword") %>></input><br>
+    			<button type="button" class="btn btn-default realChange">修改</button>
+    		</div>
+    	</div>
     </div>
     
   </div>
