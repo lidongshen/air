@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,14 +14,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import entity.Booking;
 import entity.Flight;
 import entity.User;
 import service.prototype.IClerkerService;
+import service.prototype.IFlightService;
 
 @Controller
 public class ClerkerController {
 	@Autowired
 	private IClerkerService clerkerService;
+	@Autowired
+	private IFlightService flightService;
 	
 	@RequestMapping("/clerker")
 	public String clerker(){
@@ -50,25 +55,24 @@ public class ClerkerController {
 		return "ok";
 	}
 	
-	@RequestMapping("/corder")
-	@ResponseBody
-	public String corder(HttpServletRequest request) {
-		HttpSession session=request.getSession(true);
-		String fid = request.getParameter("fId");
-		int fId = Integer.parseInt(fid);
-		int cId=Integer.parseInt(session.getAttribute("cId").toString());
-		System.out.println(cId+"-"+fId);
-		return "ok";
-	}/*@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
-	public ModelAndView seachFindOrder(HttpSession session,@PathVariable("fId") int fId) {
-		int cId = (int) session.getAttribute("cId");
-		System.out.println(cId);
-		System.out.println(fId);
+	@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView corder(@PathVariable("fId" ) int fId,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("clerker/corderTicket");
-		List<Booking> f = clerkerService.findBooking(cId, fId);
-		mv.addObject("f",f);
+		HttpSession session=request.getSession(true);
+		int cId=Integer.parseInt(session.getAttribute("cId").toString());
+		clerkerService.orderTicket(cId, fId);
+		Flight oneFlight = flightService.seachFlight(fId);
+		mv.addObject("oneFlight",oneFlight);
 		return mv;
-	} */
+	}
+	@RequestMapping(value="/payTicket/{fId}/{cId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("cId") int cId) {
+		ModelAndView mv = new ModelAndView("clerker/pay");
+		System.out.println(fId);
+		System.out.println(cId);
+		clerkerService.pay(cId, fId);
+		return mv;
+	}
 	
 	@RequestMapping(value = "/cflightlist",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachFlightAll() {
@@ -95,5 +99,22 @@ public class ClerkerController {
 		return mv;
 	} 
 	
+	@RequestMapping(value = "/search",produces = "text/plain;charset=utf-8")
+	public ModelAndView getUsers(HttpServletRequest request) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		String from = request.getParameter("from");
+		String to = request.getParameter("to");		
+		String time = request.getParameter("time");
+		System.out.println(time);
+		ModelAndView mv = new ModelAndView("clerker/list");
+		List<Flight> f = clerkerService.seachFlight(from, to);
+		mv.addObject("f",f);
+		mv.addObject("time", time);
+		return mv;
+	} 
 	
 }

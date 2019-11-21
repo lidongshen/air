@@ -43,7 +43,7 @@ a {
 						<td>${f.fEndtime}</td>
 					</tr>
 				</table>
-					<button type="button" fid=${f.fId} id="commit">订票</button>
+					<button type="button" fid=${f.fId} id="commit"  onclick=clerkerOrderTicket(${f.fId})>订票</button>
 				</c:forEach>
 		
 			

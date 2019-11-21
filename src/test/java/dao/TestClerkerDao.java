@@ -75,6 +75,10 @@ public class TestClerkerDao {
 			}
 	}
 	@Test
+	public void testPay() {
+		clerkerdao.pay(1, 1);
+	}
+	@Test
 	public void testDrawerTicket() {
 		clerkerdao.drawerTicket(1, 1, 1);
 	}

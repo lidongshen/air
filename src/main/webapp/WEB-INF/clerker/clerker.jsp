@@ -24,7 +24,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="logout.jsp">退出</a></li>
+            <li class="layui-nav-item"><a href="http://localhost:8080/airsys/clogin">退出</a></li>
         </ul>
     </div>
 
@@ -33,17 +33,11 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-nav-itemed">
-                    <a class="" href="cflightlist" target="ck">机票查询</a>
+                    <a class="" href="cflightlist" target="ck">订购机票</a>
                 </li>
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="cuserlist" target="ck">用户查询</a>
                 </li>
-                <li class="class layui-nav-item">
-                    <a href="../class.ajax/ajax.html" target="ck">售票系统</a>
-                </li>
-                <li class="student layui-nav-item"><a href="../student111.ajax/ajax.html"target="ck">退票系统</a></li>
-                <li class="teacher layui-nav-item"><a href="../teacher.ajax/ajax.html"target="ck">机票改签</a></li>
-                <li class="teacher layui-nav-item"><a href="../teacher.ajax/ajax.html"target="ck">支付页面</a></li>
             </ul>
         </div>
     </div>

@@ -2,10 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
-<% 
-	String cId = session.getAttribute("cId").toString(); 
-	out.print(cId);
-%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,14 +15,14 @@
 </head>
 <body>
     <div class="zong">
-        <form method="post" id="form1" action="/airsys/user/payTicket/${orderFlight.fId}/<%=session.getAttribute("uId") %>" >
+        <form method="post" id="form1" action="/airsys/payTicket/${oneFlight.fId}/<%=session.getAttribute("cId") %>" >
             <center><h1 class="h1">航空航天订单</h1></center>
-            <center><h3>${f.fName}</h3></center>
-            <div><span>${f.fFromcity}</span></div>
-            <div><span>${f.fTocity}</span></div>
-            <div><span>${f.fStarttime}</span></div>
-            <div><span>${f.fEndtime}</span></div>
-            <div><span>${f.fMoney}</span></div>		
+            <center><h3>${oneFlight.fName}</h3></center>
+            <div><span>${oneFlight.fFromcity}</span></div>
+            <div><span>${oneFlight.fTocity}</span></div>
+            <div><span>${oneFlight.fStarttime}</span></div>
+            <div><span>${oneFlight.fEndtime}</span></div>
+            <div><span>${oneFlight.fMoney}</span></div>		
             <input class="submit" type="submit" value="确认订单">
         </form>
     </div>

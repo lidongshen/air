@@ -33,7 +33,7 @@ public interface IClerkerDao {
 		void endorseTicket(int uId, int fId1,int fId2);
 		
 		//付账update
-		void pay(int uId, int fId);
+		void pay(int cId, int fId);
 		
 		List<Clerker> findCPager(int offset ,int pageSize);
 		List<Clerker> findCPager(int offset ,int pageSize,int bId);

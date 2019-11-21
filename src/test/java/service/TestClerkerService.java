@@ -68,5 +68,9 @@ public class TestClerkerService {
 				System.out.println(b1);
 			}
 	}
+	@Test
+	public void testPay() {
+		clerkerservice.pay(1, 1);
+	}
 	
 }

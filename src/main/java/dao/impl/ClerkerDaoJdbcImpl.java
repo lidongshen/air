@@ -106,10 +106,10 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 
 		@Override
 		//支付
-		public void pay(int uId, int fId) {
+		public void pay(int cId, int fId) {
 			jdbcTemplate.update(
-					"update trip set u_ispay=1 where u_id=? and f_id=?",
-					new Object[]{uId,fId});
+					"update booking set b_ispay=1 where c_id=? and f_id=?",
+					new Object[]{cId,fId});
 		}
 
 	@Override

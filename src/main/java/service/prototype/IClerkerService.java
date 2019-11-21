@@ -23,4 +23,5 @@ public interface IClerkerService {
 	int insertC(Clerker c);
 	int delC(int id);
 	int modify(Clerker c);
+	void pay(int cId, int fId);
 }

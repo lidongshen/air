@@ -97,4 +97,8 @@ public class ClerkerServiceImpl implements IClerkerService {
 	public int modify(Clerker c) {
 		return clerkerdao.upDateC(c);
 	}
+	@Override
+	public void pay(int cid, int fid) {
+		clerkerdao.pay(cid, fid);
+	}
 }
