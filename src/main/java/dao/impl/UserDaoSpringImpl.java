@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import dao.prototype.IUserDao;
+import entity.Booking;
 import entity.Flight;
 import entity.OutTicket;
 import entity.Trip;
@@ -171,6 +172,56 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int updateUser(User user) {
 		return jdbcTemplate.update("update user set u_phone=?,u_password=?,u_age=?,u_sex=? where u_id=?",
 				new Object[] {user.getuPhone(),user.getuPassword(),user.getuAge(),user.getuSex(),user.getuId()});
+	}
+	@Override
+	public int addBook(Booking book) {
+		return jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values (?,?,?,?)"
+				,new Object[] {book.getuId(),0,book.getfId(),0});
+		
+	}
+	@Override
+	public int payBook(Booking book) {
+		return jdbcTemplate.update("update booking set b_ispay=? where u_id=? and f_id=?"
+				,new Object[] {1,book.getuId(),book.getfId()});
+	}
+	@Override
+	public int outPayBook(Booking book) {
+		return jdbcTemplate.update("update booking set b_ispay=? where u_id=? and f_id=?"
+				,new Object[] {0,book.getuId(),book.getfId()});
+	}
+	@Override
+	public int addTrip(Trip trip) {
+		return jdbcTemplate.update("insert into trip (u_id,f_id,u_ispay) values (?,?,?)"
+				,new Object[] {trip.getuId(),trip.getfId(),trip.getuIspay()});
+		
+	}
+	@Override
+	public int payTrip(Trip trip) {
+		return jdbcTemplate.update("update trip set u_ispay = ? where u_id=? and f_id=? "
+				,new Object[] {1,trip.getuId(),trip.getfId()});
+	}
+	@Override
+	public int outPayTrip(Trip trip) {
+		return jdbcTemplate.update("update trip set u_ispay = ? where u_id=? and f_id=? "
+				,new Object[] {0,trip.getuId(),trip.getfId()});
+	}
+	@Override
+	public int addOutTicket(OutTicket ot) {
+		jdbcTemplate.update("insert into"
+				,new Object[] {});
+		return 0;
+	}
+	@Override
+	public int outTicket(OutTicket ot) {
+		jdbcTemplate.update(""
+				,new Object[] {});
+		return 0;
+	}
+	@Override
+	public int outOutTicket(OutTicket ot) {
+		jdbcTemplate.update(""
+				,new Object[] {});
+		return 0;
 	}
 	
 

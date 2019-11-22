@@ -2,7 +2,9 @@ package dao.prototype;
 
 import java.util.List;
 
+import entity.Booking;
 import entity.Flight;
+import entity.OutTicket;
 import entity.Trip;
 import entity.TripByUserAndFlight;
 import entity.User;
@@ -55,4 +57,20 @@ public interface IUserDao {
 	List<TripByUserAndFlight> findTrip(int uId);
 	
 	int updateUser(User user);
+	
+	
+	
+	int addBook(Booking book);
+	int payBook(Booking book);
+	int outPayBook(Booking book);
+	
+	int addTrip(Trip trip);
+	int payTrip(Trip trip);
+	int outPayTrip(Trip trip);
+	
+	int addOutTicket(OutTicket ot);
+	int outTicket(OutTicket ot);
+	int outOutTicket(OutTicket ot);
+	
+	
 }

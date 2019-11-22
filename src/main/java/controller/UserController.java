@@ -158,6 +158,10 @@ public class UserController {
 			return "nook";
 		
 	}
-	
+	/*@RequestMapping("/nologin")
+	public ModelAndView nologin() {
+		ModelAndView mv = new ModelAndView("user/nologin");
+		return mv;
+	}*/
 }
 
