@@ -193,7 +193,6 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int addTrip(Trip trip) {
 		return jdbcTemplate.update("insert into trip (u_id,f_id,u_ispay) values (?,?,?)"
 				,new Object[] {trip.getuId(),trip.getfId(),trip.getuIspay()});
-		
 	}
 	@Override
 	public int payTrip(Trip trip) {
@@ -207,21 +206,28 @@ public class UserDaoSpringImpl implements IUserDao{
 	}
 	@Override
 	public int addOutTicket(OutTicket ot) {
-		jdbcTemplate.update("insert into"
-				,new Object[] {});
-		return 0;
+		return jdbcTemplate.update("insert into (f_id,u_id,c_id,o_isout,id_num) values (?,?,?,?,?)"
+				,new Object[] {ot.getfId(),ot.getuId(),0,0,0});
 	}
 	@Override
 	public int outTicket(OutTicket ot) {
-		jdbcTemplate.update(""
-				,new Object[] {});
-		return 0;
+		return jdbcTemplate.update("update outticket set o_isout=? where u_id=? and f_id=?"
+				,new Object[] {1,ot.getuId(),ot.getfId()});
 	}
 	@Override
 	public int outOutTicket(OutTicket ot) {
-		jdbcTemplate.update(""
-				,new Object[] {});
-		return 0;
+		return jdbcTemplate.update("update outticket set o_isout=? where u_id=? and f_id=?"
+				,new Object[] {0,ot.getuId(),ot.getfId()});
+	}
+	@Override
+	public int deleteOneTicket(int fId) {
+		return jdbcTemplate.update("update flight set f_seatnum=f_seatnum-1 where f_id=?",
+				new Object[] {fId});
+	}
+	@Override
+	public int addOneTicket(int fId) {
+		return jdbcTemplate.update("update flight set f_seatnum=f_seatnum+1 where f_id=?",
+				new Object[] {fId});
 	}
 	
 

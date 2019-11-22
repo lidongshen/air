@@ -56,6 +56,9 @@ public interface IUserDao {
 	
 	List<TripByUserAndFlight> findTrip(int uId);
 	
+	int deleteOneTicket(int fId);
+	int addOneTicket(int fId);
+	
 	int updateUser(User user);
 	
 	
