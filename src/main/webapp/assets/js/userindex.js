@@ -53,7 +53,7 @@ window.onload = function () {
     
     
     $(".exitbtn").on("click",function(){
-		if(confirm("是否确定退出系统")){
+		if(confirm("是否确定退出系统？")){
 			$.ajax({
 				url:"/airsys/user/exit",
 				success:function(e){
@@ -66,7 +66,11 @@ window.onload = function () {
 			})
 		}
 	})
-	
+	$(".loginbtn").on("click",function(){
+		if(confirm("是否登录系统？")){
+			window.location.href="/airsys/user/login";
+		}
+	})
 	
 	$.ajax({
 		url:"/airsys/user/triplist",
@@ -76,9 +80,9 @@ window.onload = function () {
 			console.log(jsonData)
 			for(var i in jsonData){
 			$(".mytablee").append("<tr>" +
-					"<td>"+jsonData[i].uId+"</td>" +
-					"<td>"+jsonData[i].fId+"</td>"+
-					"<td>"+jsonData[i].fId+"</td>"+
+					"<td>"+jsonData[i].uName+"</td>" +
+					"<td>"+jsonData[i].fStarttime+"</br>"+jsonData[i].fFromcity+"</td>"+
+					"<td>"+jsonData[i].fEndtime+"</br>"+jsonData[i].fTocity+"</td>"+
 					"<td>"+jsonData[i].uIspay+"</td>"+
 					"</tr>")
 			}
@@ -141,7 +145,19 @@ window.onload = function () {
     
     $(".realChange").on("click",function(){
     	if(confirm("确认修改？")){
-    		alert(1);
+    		$.ajax({
+    			url:"changeMessage",
+    			data:{
+    				age:$(".age").val(),
+    				sex:$(".sex").val(),
+    				telephone:$(".telephone").val(),
+    				password:$(".password").val()
+    			},
+    			success:function(e){
+    				var result=e.replace(/\s/g, "");
+    				console.log(result);
+    			}
+    		})
     	}
     })
 }

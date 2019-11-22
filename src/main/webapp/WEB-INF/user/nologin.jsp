@@ -40,8 +40,7 @@ out.println(session.getAttribute("uId"));
     <li class="userhistory">历史订单<>
     <li class="usermessage">用户信息<>
     <li class="userchange">修改用户信息<>
-    <li class = "exitbtn">退出登录<>
-    <li class = "loginbtn"  style="display:none">登录<>
+    <li class = "loginbtn">登录<>
   </ul>
   <div class="layui-tab-content">
     <div class="layui-tab-item layui-show">

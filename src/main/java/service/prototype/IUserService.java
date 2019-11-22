@@ -4,6 +4,7 @@ import java.util.List;
 
 import entity.Flight;
 import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 
 public interface IUserService {
@@ -41,5 +42,7 @@ public interface IUserService {
 	
 	int totalItems();
 	
-	List<Trip> findTrip(int uId);
+	List<TripByUserAndFlight> findTrip(int uId);
+	
+	int updateUser(User user);
 }

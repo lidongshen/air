@@ -12,6 +12,7 @@ import config.TestConfig;
 import dao.prototype.IUserDao;
 import entity.Flight;
 import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -75,8 +76,8 @@ public class TestUserDao {
 	
 	@Test
 	public void testfindTrip() {
-		List<Trip> findTrip = userDao.findTrip(1);
-		for (Trip trip : findTrip) {
+		List<TripByUserAndFlight> findTrip = userDao.findTrip(1);
+		for (TripByUserAndFlight trip : findTrip) {
 			System.out.println(trip);
 		}
 	}

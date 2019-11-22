@@ -4,6 +4,7 @@ import java.util.List;
 
 import entity.Flight;
 import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 /**
  * IUserDao接口
@@ -51,8 +52,7 @@ public interface IUserDao {
 	
 	int totalNum();
 	
-	List<Trip> findTrip(int uId);
+	List<TripByUserAndFlight> findTrip(int uId);
 	
-	
-	
+	int updateUser(User user);
 }

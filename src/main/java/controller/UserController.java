@@ -17,6 +17,7 @@ import com.alibaba.fastjson.JSON;
 
 import entity.Flight;
 import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 import service.prototype.IFlightService;
 import service.prototype.IUserService;
@@ -101,7 +102,7 @@ public class UserController {
 	}
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) {
-		ModelAndView mv = new ModelAndView("user/index");
+		ModelAndView mv = new ModelAndView("user/nologin");
 		
 		return mv;
 	}
@@ -125,7 +126,7 @@ public class UserController {
 	public String allTrip(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		int uId = Integer.parseInt(session.getAttribute("uId").toString());
-		List<Trip> trip = userService.findTrip(uId);
+		List<TripByUserAndFlight> trip = userService.findTrip(uId);
 		return JSON.toJSONString(trip);
 	}
 	@RequestMapping(value="/userlist",produces = "text/plain;charset=utf-8")
@@ -136,5 +137,27 @@ public class UserController {
 		User user = userService.findUser(uId);
 		return JSON.toJSONString(user);
 	}
+	@RequestMapping("/changeMessage")
+	@ResponseBody
+	public String changeMessage(HttpServletRequest request) {
+		int age = Integer.parseInt(request.getParameter("age"));
+		String sex = request.getParameter("sex");
+		String telephone = request.getParameter("telephone");
+		String password = request.getParameter("password");
+		User user = new User();
+		user.setuAge(age);
+		user.setuPhone(telephone);
+		user.setuSex(sex);
+		user.setuPassword(password);
+		HttpSession session = request.getSession();
+		int uId = Integer.parseInt(session.getAttribute("uId").toString());
+		user.setuId(uId);
+		if(userService.updateUser(user)>0) 
+			return "ok";
+		else 
+			return "nook";
+		
+	}
+	
 }
 

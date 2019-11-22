@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import dao.prototype.IUserDao;
 import entity.Flight;
-import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 import service.prototype.IUserService;
 
@@ -88,8 +88,13 @@ public class UserServiceDaoImpl implements IUserService{
 	}
 
 	@Override
-	public List<Trip> findTrip(int uId) {
+	public List<TripByUserAndFlight> findTrip(int uId) {
 		return userDao.findTrip(uId);
+	}
+
+	@Override
+	public int updateUser(User user) {
+		return userDao.updateUser(user);
 	}
 	
 }

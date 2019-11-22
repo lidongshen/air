@@ -12,6 +12,7 @@ import dao.prototype.IUserDao;
 import entity.Flight;
 import entity.OutTicket;
 import entity.Trip;
+import entity.TripByUserAndFlight;
 import entity.User;
 
 @Repository("userDaoSpringImpl")
@@ -153,11 +154,11 @@ public class UserDaoSpringImpl implements IUserDao{
 		return jdbcTemplate.queryForObject("select count(*) from user", Integer.class);
 	}
 	@Override
-	public List<Trip> findTrip(int uId) {
+	public List<TripByUserAndFlight> findTrip(int uId) {
 		return jdbcTemplate.query(
-				"select * from trip where u_id = ?", 
+				"select u.u_name,f.f_fromcity,f.f_tocity,f.f_starttime,f.f_endtime,t.u_ispay from trip t left JOIN flight f on f.f_id=t.f_id LEFT JOIN user u on u.u_id = t.u_id where t.u_id =?", 
 				new Object[] {uId},
-				new BeanPropertyRowMapper<Trip>(Trip.class));
+				new BeanPropertyRowMapper<TripByUserAndFlight>(TripByUserAndFlight.class));
 	}
 	@Override
 	public User findUser(int id) {
@@ -165,6 +166,11 @@ public class UserDaoSpringImpl implements IUserDao{
 				"select * from user where u_id = ?",
 				new Object[]{id},
 				new BeanPropertyRowMapper<User>(User.class));
+	}
+	@Override
+	public int updateUser(User user) {
+		return jdbcTemplate.update("update user set u_phone=?,u_password=?,u_age=?,u_sex=? where u_id=?",
+				new Object[] {user.getuPhone(),user.getuPassword(),user.getuAge(),user.getuSex(),user.getuId()});
 	}
 	
 
