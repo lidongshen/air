@@ -22,6 +22,8 @@ public interface IClerkerDao {
 		void Modify(int uid);
 		//订票
 		void orderTicket(int cid,int fid);
+		//订单查询
+		List<Booking> findBooking();
         List<Booking> findBooking(int cid,int fid);
 		//出票
 		void drawerTicket(int uId,int cid,int fId);

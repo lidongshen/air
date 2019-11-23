@@ -13,7 +13,7 @@
     <title>订单</title>
     <link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/airsys/assets/css/userpay.css">
-    <script type="text/javascript" src="/airsys/assets/js/clerkerSleep.js"></script>
+     <script type="text/javascript" src="/airsys/assets/js/clerkerSleep.js"></script>
     
 </head>
 <body>
@@ -31,7 +31,7 @@
             <option value="0">微信</option>
             <option value="0">网银</option>
         </select>
-        <div>正在进行支付，请稍后……</div>
+        <input type="button" value="确定" class="determine">
         <input type="button" value="退出" class="exitbtn">
     </div>
 </body>

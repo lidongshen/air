@@ -10,45 +10,40 @@
 	<script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
 	<script src="/airsys/assets/jquery-validation/dist/jquery.validate.min.js"></script>
 	<script src="/airsys/assets/jquery-validation/dist/localization/messages_zh.js"></script>
-
+	<link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
 	<style>
 		a{
 			text-decoration: none;
 		}
 	</style>
-
 </head>
 <body>
 	<h3 align="center">用户信息</h3>
 	<hr color="red">
 	<center>
-		<table  border="1px" cellspacing="0" cellpadding="0">
+	<div class="container">
+		<table  class="table table-bordered"  border="1px" cellspacing="0" cellpadding="0">
 			<tr>
 				<th>用户ID</th>
 				<th>用户姓名</th>
-				<th>用户密码</th>
 				<th>用户电话</th>
 				<th>用户年龄</th>
 				<th>用户性别</th>
-				<th>操作</th>
 			</tr>
 			
 			<c:forEach items="${u}" var="u">
 				<tr>
 					<td>${u.uId}</td>
-					<td>${u.uPhone}</td>
-					<td>${u.uPassword}</td>
 					<td>${u.uName}</td>
+					<td>${u.uPhone}</td>
 					<td>${u.uAge}</td>
 					<td>${u.uSex}</td>
-					<td>
-						<!-- <a href="#" onclick="clerkerLookFlight(fId)">查看详情</a> -->
-					</td>
 				</tr>
 			</c:forEach>
 			
 			
 		</table>
+	</div>	
 	</center>
 	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>

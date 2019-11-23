@@ -16,6 +16,7 @@ public interface IClerkerService {
 	int findClerker(String cname,String cpwd);
 	void orderTicket(int cid,int fid);
 	List<Booking> findBooking(int cid,int fid);
+	List<Booking> findBooking();
 	List<Clerker> seachClerkerPage(int pageNO ,int pageSize);
 	List<Clerker> seachClerkerPage(int pageNO ,int pageSize,int bId);
 	int totalItems();

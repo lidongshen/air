@@ -75,6 +75,13 @@ public class TestClerkerDao {
 			}
 	}
 	@Test
+	public void testFindOrede() {
+		 List<Booking> b = clerkerdao.findBooking();
+			for (Booking b1 : b) {
+				System.out.println(b1);
+			}
+	}
+	@Test
 	public void testPay() {
 		clerkerdao.pay(1, 1);
 	}

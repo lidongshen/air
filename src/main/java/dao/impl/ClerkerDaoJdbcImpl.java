@@ -67,6 +67,10 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values(0,"+cid+","+fid+",0)");
 	}
 	//订单查询
+	public List<Booking> findBooking() {
+		return jdbcTemplate.query("SELECT * FROM  booking", new BeanPropertyRowMapper<Booking>(Booking.class));
+	}
+	
 	public List<Booking> findBooking(int cid,int fid) {
 		return jdbcTemplate.query("SELECT * FROM  booking WHERE f_id=? and c_id=? ", new Object[] {cid,fid},new BeanPropertyRowMapper<Booking>(Booking.class));
 	}
