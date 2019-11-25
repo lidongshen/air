@@ -38,6 +38,9 @@
                 <li class="layui-nav-item layui-nav-itemed">
                     <a class="" href="cuserlist" target="ck">用户查询</a>
                 </li>
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a class="" href="cbookinglist" target="ck">订单查询</a>
+                </li>
             </ul>
         </div>
     </div>

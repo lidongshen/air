@@ -69,6 +69,13 @@ public class TestClerkerService {
 			}
 	}
 	@Test
+	public void testFindOrder() {
+		 List<Booking> b = clerkerservice.findBooking();
+		 for (Booking b1 : b) {
+				System.out.println(b1);
+			}
+	}
+	@Test
 	public void testPay() {
 		clerkerservice.pay(1, 1);
 	}

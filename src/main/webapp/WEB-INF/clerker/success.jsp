@@ -56,7 +56,6 @@
 	}
 
 </script>
-
 </head>
 <body>
 	<div class="zong">
@@ -64,12 +63,8 @@
 		<div class="content">
 			支付成功<br>
 			<span>3</span> 秒后页面跳转<br>
-			如果没有反应请点击 <a href="/airsys/user/index">这里</a>
+			如果没有反应请点击 <a href="/airsys/cflightlist">这里</a>
 		</div>
-
 	</div>
-	
-	
-	
 </body>
 </html>

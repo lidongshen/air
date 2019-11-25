@@ -101,4 +101,9 @@ public class ClerkerServiceImpl implements IClerkerService {
 	public void pay(int cid, int fid) {
 		clerkerdao.pay(cid, fid);
 	}
+
+	@Override
+	public List<Booking> findBooking() {
+		return clerkerdao.findBooking();
+	}
 }
