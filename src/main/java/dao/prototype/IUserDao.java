@@ -17,7 +17,7 @@ public interface IUserDao {
 	
 	User findUser(int id);
 	User findUser(String name);
-	//订票
+	/*//订票
 	void orderTicket(int uId,int fId);
 	
 	//出票
@@ -31,7 +31,7 @@ public interface IUserDao {
 	
 	//付账update
 	void pay(int uId, int fId);
-	
+	*/
 	//查询订单
 	List<Flight> findOrder(int uId,String from,String to);
 	//查票
@@ -44,36 +44,33 @@ public interface IUserDao {
 	
 	boolean isOutTicket(int uId,int fId);
 	
-	void saveOrUpdateBooking(int uId,int fId,int bIspay);
-	
-	void saveOrUpdateTrip(int uId,int fId,int uIspay);
-	
-	void saveOrUpdateOutTicket(int uId,int fId,int oIsout);
-	
 	List<User> findUPager(int offset ,int pageSize);
 	
 	int totalNum();
 	
 	List<TripByUserAndFlight> findTrip(int uId);
 	
+	
 	int deleteOneTicket(int fId);
 	int addOneTicket(int fId);
 	
 	int updateUser(User user);
 	
+	int findLastTid(int fId,int uId);
+	int findLastBookid(int fId,int uId);
 	
 	
-	int addBook(Booking book);
-	int payBook(Booking book);
-	int outPayBook(Booking book);
+	int addBook(int uId,int fId);
+	int payBook(int uId,int fId);
+	int outPayBook(int uId,int fId);
 	
-	int addTrip(Trip trip);
-	int payTrip(Trip trip);
-	int outPayTrip(Trip trip);
+	int addTrip(int uId,int fId);
+	int payTrip(int uId,int fId);
+	int outPayTrip(int uId,int fId);
 	
-	int addOutTicket(OutTicket ot);
-	int outTicket(OutTicket ot);
-	int outOutTicket(OutTicket ot);
+	int addOutTicket(int uId,int fId);
+	int outTicket(int uId,int fId);
+	int outOutTicket(int uId,int fId);
 	
 	
 }

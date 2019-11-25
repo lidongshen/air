@@ -17,10 +17,10 @@ public interface IUserService {
 	void drawerTicket(int uId, int fId);
 
 	// 退款
-	void refundTicket(int uId, int fId);
+	String refundTicket(int uId, int fId);
 
-	// 改签
-	void endorseTicket(int uId, int fId1, int fId2);
+/*	// 改签
+	void endorseTicket(int uId, int fId1, int fId2);*/
 
 	// 付账update
 	void pay(int uId, int fId);
@@ -45,4 +45,8 @@ public interface IUserService {
 	List<TripByUserAndFlight> findTrip(int uId);
 	
 	int updateUser(User user);
+	
+	int findLastTid(int fId,int uId);
+	int findLastBookid(int fId,int uId);
+	
 }

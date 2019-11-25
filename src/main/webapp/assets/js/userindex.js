@@ -79,12 +79,14 @@ window.onload = function () {
 			var jsonData=eval("("+result+")")
 			console.log(jsonData)
 			for(var i in jsonData){
-			$(".mytablee").append("<tr>" +
+			$(".mytablee").append("<tr class='fId"+jsonData[i].fId+"'>" +
 					"<td>"+jsonData[i].uName+"</td>" +
 					"<td>"+jsonData[i].fStarttime+"</br>"+jsonData[i].fFromcity+"</td>"+
 					"<td>"+jsonData[i].fEndtime+"</br>"+jsonData[i].fTocity+"</td>"+
 					"<td>"+jsonData[i].uIspay+"</td>"+
-					"</tr>")
+					"<td><input class='outticket' type='button' value='退票' onclick='refundticket("+jsonData[i].fId+")'>"
+						+"<input class='refundticket' type='button' value='改签' onclick='endorseticket("+jsonData[i].fId+")'></td>"
+					+"</tr>")
 			}
 		}
 	})
@@ -160,4 +162,10 @@ window.onload = function () {
     		})
     	}
     })
+}
+function refundticket(fid){
+	window.location.href="/airsys/user/refundTicket";
+}
+function endorseticket(fid){
+	window.location.href="/airsys/user/endorseTicket";
 }

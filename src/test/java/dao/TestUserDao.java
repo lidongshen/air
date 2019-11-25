@@ -47,7 +47,7 @@ public class TestUserDao {
 	}
 	
 	
-	@Test
+	/*@Test
 	public void orderTicket() {
 		userDao.orderTicket(1, 5);
 	}
@@ -66,7 +66,7 @@ public class TestUserDao {
 	@Test
 	public void refundTicket() {
 		userDao.refundTicket(1, 5);
-	}
+	}*/
 	
 	@Test
 	public void testFindU() {

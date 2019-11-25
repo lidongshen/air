@@ -82,7 +82,8 @@ out.println(session.getAttribute("uId"));
     				<th class="username">姓名</th>
     				<th class="userstart">出发时间/地</th>
     				<th class="userend">到达时间/地</th>
-    				<th class="userispay">已过期/已生效</th>
+    				<th class="userispay">付款状态</th>
+    				<th class="tripeditbtn">操作</th>
     			</tr>
     			
     		</table>

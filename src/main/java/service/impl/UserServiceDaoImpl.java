@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import dao.prototype.IUserDao;
 import entity.Flight;
@@ -18,28 +19,42 @@ public class UserServiceDaoImpl implements IUserService{
 	private IUserDao userDao;
 
 	@Override
+	@Transactional
 	public void orderTicket(int uId, int fId) {
-		userDao.orderTicket(uId, fId);
+		userDao.addBook(uId, fId);
+		userDao.addTrip(uId, fId);
+		userDao.deleteOneTicket(fId);
 	}
 
 	@Override
 	public void drawerTicket(int uId, int fId) {
-		userDao.drawerTicket(uId, fId);
+		userDao.outOutTicket(uId, fId);
 	}
 
 	@Override
-	public void refundTicket(int uId, int fId) {
-		userDao.refundTicket(uId, fId);
+	@Transactional
+	public String refundTicket(int uId, int fId) {
+		if(userDao.isOutTicket(uId, fId)) {
+			return "nook";
+		}else {
+			userDao.outOutTicket(uId, fId);
+			userDao.outPayBook(uId, fId);
+			userDao.outPayTrip(uId, fId);
+			return "ok";
+		}
 	}
 
+	/*//改签？？
 	@Override
 	public void endorseTicket(int uId, int fId1, int fId2) {
 		userDao.endorseTicket(uId, fId1, fId2);
-	}
+	}*/
 
 	@Override
+	@Transactional
 	public void pay(int uId, int fId) {
-		userDao.pay(uId, fId);
+		userDao.payBook(uId, fId);
+		userDao.payTrip(uId, fId);
 	}
 
 	@Override
@@ -95,6 +110,16 @@ public class UserServiceDaoImpl implements IUserService{
 	@Override
 	public int updateUser(User user) {
 		return userDao.updateUser(user);
+	}
+
+	@Override
+	public int findLastTid(int fId, int uId) {
+		return userDao.findLastTid(fId, uId);
+	}
+
+	@Override
+	public int findLastBookid(int fId, int uId) {
+		return userDao.findLastBookid(fId, uId);
 	}
 	
 }

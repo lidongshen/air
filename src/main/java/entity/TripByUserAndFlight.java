@@ -3,6 +3,7 @@ package entity;
 import java.sql.Date;
 
 public class TripByUserAndFlight {
+	private int fId;
 	private String uName;
 	private String fFromcity;
 	private String fTocity;
@@ -10,6 +11,18 @@ public class TripByUserAndFlight {
 	private Date fEndtime;
 	private String uIspay;
 	
+	public TripByUserAndFlight(int fId, String uName, String fFromcity, String fTocity, Date fStarttime, Date fEndtime,
+			String uIspay) {
+		super();
+		this.fId = fId;
+		this.uName = uName;
+		this.fFromcity = fFromcity;
+		this.fTocity = fTocity;
+		this.fStarttime = fStarttime;
+		this.fEndtime = fEndtime;
+		this.uIspay = uIspay;
+	}
+
 	public TripByUserAndFlight(String uName, String fFromcity, String fTocity, Date fStarttime, Date fEndtime,
 			String uIspay) {
 		super();
@@ -21,17 +34,16 @@ public class TripByUserAndFlight {
 		this.uIspay = uIspay;
 	}
 
-	public TripByUserAndFlight(String fFromcity, String fTocity, Date fStarttime, Date fEndtime, String uIspay) {
-		super();
-		this.fFromcity = fFromcity;
-		this.fTocity = fTocity;
-		this.fStarttime = fStarttime;
-		this.fEndtime = fEndtime;
-		this.uIspay = uIspay;
-	}
-
 	public TripByUserAndFlight() {
 		super();
+	}
+
+	public int getfId() {
+		return fId;
+	}
+
+	public void setfId(int fId) {
+		this.fId = fId;
 	}
 
 	public String getuName() {
@@ -88,6 +100,7 @@ public class TripByUserAndFlight {
 		int result = 1;
 		result = prime * result + ((fEndtime == null) ? 0 : fEndtime.hashCode());
 		result = prime * result + ((fFromcity == null) ? 0 : fFromcity.hashCode());
+		result = prime * result + fId;
 		result = prime * result + ((fStarttime == null) ? 0 : fStarttime.hashCode());
 		result = prime * result + ((fTocity == null) ? 0 : fTocity.hashCode());
 		result = prime * result + ((uIspay == null) ? 0 : uIspay.hashCode());
@@ -114,6 +127,8 @@ public class TripByUserAndFlight {
 				return false;
 		} else if (!fFromcity.equals(other.fFromcity))
 			return false;
+		if (fId != other.fId)
+			return false;
 		if (fStarttime == null) {
 			if (other.fStarttime != null)
 				return false;
@@ -139,8 +154,8 @@ public class TripByUserAndFlight {
 
 	@Override
 	public String toString() {
-		return "TripByUserAndFlight [uName=" + uName + ", fFromcity=" + fFromcity + ", fTocity=" + fTocity
-				+ ", fStarttime=" + fStarttime + ", fEndtime=" + fEndtime + ", uIspay=" + uIspay + "]";
+		return "TripByUserAndFlight [fId=" + fId + ", uName=" + uName + ", fFromcity=" + fFromcity + ", fTocity="
+				+ fTocity + ", fStarttime=" + fStarttime + ", fEndtime=" + fEndtime + ", uIspay=" + uIspay + "]";
 	}
 	
 	

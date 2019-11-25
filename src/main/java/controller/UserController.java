@@ -127,6 +127,7 @@ public class UserController {
 		HttpSession session = request.getSession();
 		int uId = Integer.parseInt(session.getAttribute("uId").toString());
 		List<TripByUserAndFlight> trip = userService.findTrip(uId);
+		/*userService.findLastBookid(uId);*/
 		return JSON.toJSONString(trip);
 	}
 	@RequestMapping(value="/userlist",produces = "text/plain;charset=utf-8")
@@ -157,6 +158,16 @@ public class UserController {
 		else 
 			return "nook";
 		
+	}
+	@RequestMapping("/refundTicket")
+	public ModelAndView retundTicket() {
+		ModelAndView mv = new ModelAndView("/user/refundTicket");
+		return mv;
+	}
+	@RequestMapping("/endorseTicket")
+	public ModelAndView endoeseTicket() {
+		ModelAndView mv = new ModelAndView("/user/endorseTicket");
+		return mv;
 	}
 }
 

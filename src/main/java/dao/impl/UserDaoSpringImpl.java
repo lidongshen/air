@@ -6,10 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import dao.prototype.IUserDao;
-import entity.Booking;
 import entity.Flight;
 import entity.OutTicket;
 import entity.Trip;
@@ -22,7 +20,7 @@ public class UserDaoSpringImpl implements IUserDao{
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
-	@Override
+	/*@Override
 	@Transactional
 	public void orderTicket(int uId, int fId) {
 		
@@ -72,7 +70,8 @@ public class UserDaoSpringImpl implements IUserDao{
 				"update booking set b_ispay=1 where u_id=? and f_id=?",
 				new Object[]{uId,fId});
 	}
-
+*/
+	
 	@Override
 	public List<Flight> findOrder(int uId, String from, String to) {
 		return jdbcTemplate.query(
@@ -126,18 +125,7 @@ public class UserDaoSpringImpl implements IUserDao{
 		}
 		return flag;
 	}
-	@Override
-	public void saveOrUpdateBooking(int uId, int fId, int bIspay) {
-		
-	}
-	@Override
-	public void saveOrUpdateTrip(int uId, int fId, int uIspay) {
-		
-	}
-	@Override
-	public void saveOrUpdateOutTicket(int uId, int fId, int oIsout) {
-		
-	}
+	
 	@Override
 	public User findUser(String name) {
 		return jdbcTemplate.queryForObject(
@@ -157,7 +145,7 @@ public class UserDaoSpringImpl implements IUserDao{
 	@Override
 	public List<TripByUserAndFlight> findTrip(int uId) {
 		return jdbcTemplate.query(
-				"select u.u_name,f.f_fromcity,f.f_tocity,f.f_starttime,f.f_endtime,t.u_ispay from trip t left JOIN flight f on f.f_id=t.f_id LEFT JOIN user u on u.u_id = t.u_id where t.u_id =?", 
+				"select f.f_id,u.u_name,f.f_fromcity,f.f_tocity,f.f_starttime,f.f_endtime,t.u_ispay from trip t left JOIN flight f on f.f_id=t.f_id LEFT JOIN user u on u.u_id = t.u_id where t.u_id =?", 
 				new Object[] {uId},
 				new BeanPropertyRowMapper<TripByUserAndFlight>(TripByUserAndFlight.class));
 	}
@@ -174,50 +162,50 @@ public class UserDaoSpringImpl implements IUserDao{
 				new Object[] {user.getuPhone(),user.getuPassword(),user.getuAge(),user.getuSex(),user.getuId()});
 	}
 	@Override
-	public int addBook(Booking book) {
+	public int addBook(int uId,int fId) {
 		return jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values (?,?,?,?)"
-				,new Object[] {book.getuId(),0,book.getfId(),0});
+				,new Object[] {uId,0,fId,0});
 		
 	}
 	@Override
-	public int payBook(Booking book) {
+	public int payBook(int uId,int fId) {
 		return jdbcTemplate.update("update booking set b_ispay=? where u_id=? and f_id=?"
-				,new Object[] {1,book.getuId(),book.getfId()});
+				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outPayBook(Booking book) {
+	public int outPayBook(int uId,int fId) {
 		return jdbcTemplate.update("update booking set b_ispay=? where u_id=? and f_id=?"
-				,new Object[] {0,book.getuId(),book.getfId()});
+				,new Object[] {0,uId,fId});
 	}
 	@Override
-	public int addTrip(Trip trip) {
+	public int addTrip(int uId,int fId) {
 		return jdbcTemplate.update("insert into trip (u_id,f_id,u_ispay) values (?,?,?)"
-				,new Object[] {trip.getuId(),trip.getfId(),trip.getuIspay()});
+				,new Object[] {uId,fId,0});
 	}
 	@Override
-	public int payTrip(Trip trip) {
+	public int payTrip(int uId,int fId) {
 		return jdbcTemplate.update("update trip set u_ispay = ? where u_id=? and f_id=? "
-				,new Object[] {1,trip.getuId(),trip.getfId()});
+				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outPayTrip(Trip trip) {
+	public int outPayTrip(int uId,int fId) {
 		return jdbcTemplate.update("update trip set u_ispay = ? where u_id=? and f_id=? "
-				,new Object[] {0,trip.getuId(),trip.getfId()});
+				,new Object[] {0,uId,fId});
 	}
 	@Override
-	public int addOutTicket(OutTicket ot) {
+	public int addOutTicket(int uId,int fId) {
 		return jdbcTemplate.update("insert into (f_id,u_id,c_id,o_isout,id_num) values (?,?,?,?,?)"
-				,new Object[] {ot.getfId(),ot.getuId(),0,0,0});
+				,new Object[] {fId,uId,0,0,0});
 	}
 	@Override
-	public int outTicket(OutTicket ot) {
+	public int outTicket(int uId,int fId) {
 		return jdbcTemplate.update("update outticket set o_isout=? where u_id=? and f_id=?"
-				,new Object[] {1,ot.getuId(),ot.getfId()});
+				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outOutTicket(OutTicket ot) {
+	public int outOutTicket(int uId,int fId) {
 		return jdbcTemplate.update("update outticket set o_isout=? where u_id=? and f_id=?"
-				,new Object[] {0,ot.getuId(),ot.getfId()});
+				,new Object[] {0,uId,fId});
 	}
 	@Override
 	public int deleteOneTicket(int fId) {
@@ -228,6 +216,22 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int addOneTicket(int fId) {
 		return jdbcTemplate.update("update flight set f_seatnum=f_seatnum+1 where f_id=?",
 				new Object[] {fId});
+	}
+
+	@Override
+	public int findLastTid(int fId, int uId) {
+		int bookId = jdbcTemplate.queryForObject("select MAX(book_id) bookId from booking where f_id=? and u_id=?",
+				new Object[] {fId,uId},
+				new BeanPropertyRowMapper<Integer>(Integer.class));
+		return bookId;
+	}
+
+	@Override
+	public int findLastBookid(int fId, int uId) {
+		int bookId = jdbcTemplate.queryForObject("select MAX(t_id) tId from trip where f_id=? and u_id=?",
+				new Object[] {fId,uId},
+				new BeanPropertyRowMapper<Integer>(Integer.class));
+		return bookId;
 	}
 	
 
