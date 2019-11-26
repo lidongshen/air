@@ -159,14 +159,38 @@ public class UserController {
 			return "nook";
 		
 	}
-	@RequestMapping("/refundTicket")
-	public ModelAndView retundTicket() {
-		ModelAndView mv = new ModelAndView("/user/refundTicket");
+	@RequestMapping("/refundTicket/{bookId}")
+	public ModelAndView retundTicket(@PathVariable("bookId") int bookId) {
+		ModelAndView mv = null;
+		String result = userService.refundTicket(bookId);
+		if("ok".equals(result)) {
+			mv = new ModelAndView("/user/index");
+		}
 		return mv;
 	}
-	@RequestMapping("/endorseTicket")
-	public ModelAndView endoeseTicket() {
+	@RequestMapping("/endorsePage/{bookId}")
+	public ModelAndView endoesePage(@PathVariable("bookId") int bookId) {
 		ModelAndView mv = new ModelAndView("/user/endorseTicket");
+		int fId = userService.findFidByBookId(bookId);
+		Flight f = flightService.seachFlight(fId);
+		mv.addObject("bookId",bookId);
+		mv.addObject("f",f);
+		return mv;
+	}
+	@RequestMapping("/endorseTicket/{bookId}")
+	public ModelAndView endoeseTicket(@PathVariable("bookId") int bookId,HttpServletRequest request) {
+		ModelAndView mv = new ModelAndView("/user/endorseoneTicket");
+		String from = request.getParameter("from");
+		String to = request.getParameter("to");
+		List<Flight> findTicket = userService.findTicket(from, to);
+		mv.addObject("endorseTickets",findTicket);
+		mv.addObject("bookId",bookId);
+		return mv;
+	}
+	@RequestMapping("/endorseOneTicket/{fId}/{bookId}")
+	public ModelAndView endoeseOneTicket(@PathVariable("fId") int fId,@PathVariable("bookId") int bookId) {
+		ModelAndView mv = new ModelAndView("/user/index");
+		userService.endorseTicket(fId,bookId);
 		return mv;
 	}
 }

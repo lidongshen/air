@@ -84,8 +84,8 @@ window.onload = function () {
 					"<td>"+jsonData[i].fStarttime+"</br>"+jsonData[i].fFromcity+"</td>"+
 					"<td>"+jsonData[i].fEndtime+"</br>"+jsonData[i].fTocity+"</td>"+
 					"<td>"+jsonData[i].uIspay+"</td>"+
-					"<td><input class='outticket' type='button' value='退票' onclick='refundticket("+jsonData[i].fId+")'>"
-						+"<input class='refundticket' type='button' value='改签' onclick='endorseticket("+jsonData[i].fId+")'></td>"
+					"<td><input class='outticket' type='button' value='退票' onclick='refundticket("+jsonData[i].bookId+")'>"
+						+"<input class='refundticket' type='button' value='改签' onclick='endorsepage("+jsonData[i].bookId+")'></td>"
 					+"</tr>")
 			}
 		}
@@ -163,9 +163,9 @@ window.onload = function () {
     	}
     })
 }
-function refundticket(fid){
-	window.location.href="/airsys/user/refundTicket";
+function refundticket(bookId){
+	window.location.href="/airsys/user/refundTicket/"+bookId;
 }
-function endorseticket(fid){
-	window.location.href="/airsys/user/endorseTicket";
+function endorsepage(bookId){
+	window.location.href="/airsys/user/endorsePage/"+bookId;
 }

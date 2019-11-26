@@ -6,18 +6,29 @@ public class Trip {
 	private int oId;
 	private int fId;
 	private int uIspay;
+	private int bookId;
 	
-	public Trip() {
-		super();
-	}
-
-	public Trip(int tId, int uId, int oId, int fId, int uIspay) {
+	public Trip(int tId, int uId, int oId, int fId, int uIspay, int bookId) {
 		super();
 		this.tId = tId;
 		this.uId = uId;
 		this.oId = oId;
 		this.fId = fId;
 		this.uIspay = uIspay;
+		this.bookId = bookId;
+	}
+	
+	public Trip(int uId, int oId, int fId, int uIspay, int bookId) {
+		super();
+		this.uId = uId;
+		this.oId = oId;
+		this.fId = fId;
+		this.uIspay = uIspay;
+		this.bookId = bookId;
+	}
+	
+	public Trip() {
+		super();
 	}
 
 	public int gettId() {
@@ -60,10 +71,19 @@ public class Trip {
 		this.uIspay = uIspay;
 	}
 
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + bookId;
 		result = prime * result + fId;
 		result = prime * result + oId;
 		result = prime * result + tId;
@@ -81,6 +101,8 @@ public class Trip {
 		if (getClass() != obj.getClass())
 			return false;
 		Trip other = (Trip) obj;
+		if (bookId != other.bookId)
+			return false;
 		if (fId != other.fId)
 			return false;
 		if (oId != other.oId)
@@ -96,9 +118,10 @@ public class Trip {
 
 	@Override
 	public String toString() {
-		return "Trip [tId=" + tId + ", uId=" + uId + ", oId=" + oId + ", fId=" + fId + ", uIspay=" + uIspay + "]";
+		return "Trip [tId=" + tId + ", uId=" + uId + ", oId=" + oId + ", fId=" + fId + ", uIspay=" + uIspay
+				+ ", bookId=" + bookId + "]";
 	}
-
+	
 	
 	
 }

@@ -40,11 +40,11 @@ public class TestUserDao {
 		boolean flag = userDao.isPay(1, 1);
 		System.out.println(flag);
 	}
-	@Test
+	/*@Test
 	public void testIsOutTicket() {
 		boolean flag = userDao.isOutTicket(1, 1);
 		System.out.println(flag);
-	}
+	}*/
 	
 	
 	/*@Test

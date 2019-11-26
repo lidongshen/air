@@ -10,9 +10,10 @@ public class TripByUserAndFlight {
 	private Date fStarttime;
 	private Date fEndtime;
 	private String uIspay;
+	private int bookId;
 	
 	public TripByUserAndFlight(int fId, String uName, String fFromcity, String fTocity, Date fStarttime, Date fEndtime,
-			String uIspay) {
+			String uIspay, int bookId) {
 		super();
 		this.fId = fId;
 		this.uName = uName;
@@ -21,10 +22,11 @@ public class TripByUserAndFlight {
 		this.fStarttime = fStarttime;
 		this.fEndtime = fEndtime;
 		this.uIspay = uIspay;
+		this.bookId = bookId;
 	}
 
 	public TripByUserAndFlight(String uName, String fFromcity, String fTocity, Date fStarttime, Date fEndtime,
-			String uIspay) {
+			String uIspay, int bookId) {
 		super();
 		this.uName = uName;
 		this.fFromcity = fFromcity;
@@ -32,6 +34,7 @@ public class TripByUserAndFlight {
 		this.fStarttime = fStarttime;
 		this.fEndtime = fEndtime;
 		this.uIspay = uIspay;
+		this.bookId = bookId;
 	}
 
 	public TripByUserAndFlight() {
@@ -94,10 +97,19 @@ public class TripByUserAndFlight {
 		this.uIspay = uIspay;
 	}
 
+	public int getBookId() {
+		return bookId;
+	}
+
+	public void setBookId(int bookId) {
+		this.bookId = bookId;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + bookId;
 		result = prime * result + ((fEndtime == null) ? 0 : fEndtime.hashCode());
 		result = prime * result + ((fFromcity == null) ? 0 : fFromcity.hashCode());
 		result = prime * result + fId;
@@ -117,6 +129,8 @@ public class TripByUserAndFlight {
 		if (getClass() != obj.getClass())
 			return false;
 		TripByUserAndFlight other = (TripByUserAndFlight) obj;
+		if (bookId != other.bookId)
+			return false;
 		if (fEndtime == null) {
 			if (other.fEndtime != null)
 				return false;
@@ -155,8 +169,12 @@ public class TripByUserAndFlight {
 	@Override
 	public String toString() {
 		return "TripByUserAndFlight [fId=" + fId + ", uName=" + uName + ", fFromcity=" + fFromcity + ", fTocity="
-				+ fTocity + ", fStarttime=" + fStarttime + ", fEndtime=" + fEndtime + ", uIspay=" + uIspay + "]";
+				+ fTocity + ", fStarttime=" + fStarttime + ", fEndtime=" + fEndtime + ", uIspay=" + uIspay + ", bookId="
+				+ bookId + "]";
 	}
+	
+	
+	
 	
 	
 	

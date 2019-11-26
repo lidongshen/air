@@ -12,3 +12,8 @@ function userLookFlight(fId){
 		}
 	})
 }
+function endorseTickets(fId,bookId){
+	if(confirm("确认改签？")){
+		window.location.href="/airsys/user/endorseOneTicket/"+fId+"/"+bookId;
+	}
+}

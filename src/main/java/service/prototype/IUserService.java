@@ -14,10 +14,10 @@ public interface IUserService {
 	void orderTicket(int uId, int fId);
 
 	// 出票
-	void drawerTicket(int uId, int fId);
+	void drawerTicket(int bookId);
 
 	// 退款
-	String refundTicket(int uId, int fId);
+	String refundTicket(int bookId);
 
 /*	// 改签
 	void endorseTicket(int uId, int fId1, int fId2);*/
@@ -36,7 +36,7 @@ public interface IUserService {
 
 	boolean isLogin(String username, String password);
 
-	boolean isOutTicket(int uId, int fId);
+	/*boolean isOutTicket(int uId, int fId);*/
 	
 	List<User> seachUserPage(int pageNo ,int pageSize);
 	
@@ -49,4 +49,6 @@ public interface IUserService {
 	int findLastTid(int fId,int uId);
 	int findLastBookid(int fId,int uId);
 	
+	int findFidByBookId(int bookId);
+	void endorseTicket(int fId,int bookId);
 }

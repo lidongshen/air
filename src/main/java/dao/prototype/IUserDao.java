@@ -42,7 +42,7 @@ public interface IUserDao {
 	
 	boolean isLogin(String username,String password);
 	
-	boolean isOutTicket(int uId,int fId);
+	/*boolean isOutTicket(int bookId);*/
 	
 	List<User> findUPager(int offset ,int pageSize);
 	
@@ -62,15 +62,19 @@ public interface IUserDao {
 	
 	int addBook(int uId,int fId);
 	int payBook(int uId,int fId);
-	int outPayBook(int uId,int fId);
+	int outPayBook(int bookId);
 	
 	int addTrip(int uId,int fId);
 	int payTrip(int uId,int fId);
-	int outPayTrip(int uId,int fId);
+	int outPayTrip(int bookId);
 	
 	int addOutTicket(int uId,int fId);
 	int outTicket(int uId,int fId);
-	int outOutTicket(int uId,int fId);
+	int outOutTicket(int bookId);
+	int updateTripInBookId(int uId,int fId,int bookId);
 	
+	int findFidByBookId(int bookId);
 	
+	void changeTripFid(int fId,int bookId);
+	void changeBookingFid(int fId,int bookId);
 }

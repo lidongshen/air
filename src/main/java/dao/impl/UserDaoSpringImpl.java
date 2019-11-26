@@ -113,7 +113,7 @@ public class UserDaoSpringImpl implements IUserDao{
 		}
 		return flag;
 	}
-	@Override
+	/*@Override
 	public boolean isOutTicket(int uId,int fId) {
 		boolean flag = false;
 		OutTicket list = jdbcTemplate.queryForObject(
@@ -124,7 +124,7 @@ public class UserDaoSpringImpl implements IUserDao{
 			flag=true;
 		}
 		return flag;
-	}
+	}*/
 	
 	@Override
 	public User findUser(String name) {
@@ -145,7 +145,7 @@ public class UserDaoSpringImpl implements IUserDao{
 	@Override
 	public List<TripByUserAndFlight> findTrip(int uId) {
 		return jdbcTemplate.query(
-				"select f.f_id,u.u_name,f.f_fromcity,f.f_tocity,f.f_starttime,f.f_endtime,t.u_ispay from trip t left JOIN flight f on f.f_id=t.f_id LEFT JOIN user u on u.u_id = t.u_id where t.u_id =?", 
+				"select f.f_id,u.u_name,f.f_fromcity,f.f_tocity,f.f_starttime,f.f_endtime,t.u_ispay,t.book_id from trip t left JOIN flight f on f.f_id=t.f_id LEFT JOIN user u on u.u_id = t.u_id where t.u_id =?", 
 				new Object[] {uId},
 				new BeanPropertyRowMapper<TripByUserAndFlight>(TripByUserAndFlight.class));
 	}
@@ -173,9 +173,9 @@ public class UserDaoSpringImpl implements IUserDao{
 				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outPayBook(int uId,int fId) {
-		return jdbcTemplate.update("update booking set b_ispay=? where u_id=? and f_id=?"
-				,new Object[] {0,uId,fId});
+	public int outPayBook(int bookId) {
+		return jdbcTemplate.update("update booking set b_ispay=? where book_id=?"
+				,new Object[] {0,bookId});
 	}
 	@Override
 	public int addTrip(int uId,int fId) {
@@ -188,9 +188,9 @@ public class UserDaoSpringImpl implements IUserDao{
 				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outPayTrip(int uId,int fId) {
-		return jdbcTemplate.update("update trip set u_ispay = ? where u_id=? and f_id=? "
-				,new Object[] {0,uId,fId});
+	public int outPayTrip(int bookId) {
+		return jdbcTemplate.update("update trip set u_ispay = ? where book_id=? "
+				,new Object[] {0,bookId});
 	}
 	@Override
 	public int addOutTicket(int uId,int fId) {
@@ -203,9 +203,9 @@ public class UserDaoSpringImpl implements IUserDao{
 				,new Object[] {1,uId,fId});
 	}
 	@Override
-	public int outOutTicket(int uId,int fId) {
-		return jdbcTemplate.update("update outticket set o_isout=? where u_id=? and f_id=?"
-				,new Object[] {0,uId,fId});
+	public int outOutTicket(int bookId) {
+		return jdbcTemplate.update("update outticket set o_isout=? where book_id=?"
+				,new Object[] {0,bookId});
 	}
 	@Override
 	public int deleteOneTicket(int fId) {
@@ -222,7 +222,7 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int findLastTid(int fId, int uId) {
 		int bookId = jdbcTemplate.queryForObject("select MAX(book_id) bookId from booking where f_id=? and u_id=?",
 				new Object[] {fId,uId},
-				new BeanPropertyRowMapper<Integer>(Integer.class));
+				Integer.class);
 		return bookId;
 	}
 
@@ -230,8 +230,34 @@ public class UserDaoSpringImpl implements IUserDao{
 	public int findLastBookid(int fId, int uId) {
 		int bookId = jdbcTemplate.queryForObject("select MAX(t_id) tId from trip where f_id=? and u_id=?",
 				new Object[] {fId,uId},
-				new BeanPropertyRowMapper<Integer>(Integer.class));
+				Integer.class);
 		return bookId;
+	}
+
+	@Override
+	public int updateTripInBookId(int uId, int fId, int bookId) {
+		return jdbcTemplate.update("update trip set book_id = ? where u_id=? and f_id=? "
+				,new Object[] {bookId,uId,fId});
+	}
+
+	@Override
+	public int findFidByBookId(int bookId) {
+		int fId = jdbcTemplate.queryForObject("select f_id from trip where book_id=?",
+				new Object[] {bookId},
+				Integer.class);
+		return fId;
+	}
+
+	@Override
+	public void changeTripFid(int fId, int bookId) {
+		jdbcTemplate.update("update trip set f_id=? where book_id=?",
+				new Object[] {fId,bookId});
+	}
+
+	@Override
+	public void changeBookingFid(int fId, int bookId) {
+		jdbcTemplate.update("update booking set f_id=? where book_id=?",
+				new Object[] {fId,bookId});
 	}
 	
 

@@ -23,25 +23,29 @@ public class UserServiceDaoImpl implements IUserService{
 	public void orderTicket(int uId, int fId) {
 		userDao.addBook(uId, fId);
 		userDao.addTrip(uId, fId);
+		int bookId = userDao.findLastBookid(fId, uId);
+		userDao.updateTripInBookId(uId, fId, bookId);
 		userDao.deleteOneTicket(fId);
 	}
 
 	@Override
-	public void drawerTicket(int uId, int fId) {
-		userDao.outOutTicket(uId, fId);
+	public void drawerTicket(int bookId) {
+		userDao.outOutTicket(bookId);
 	}
 
 	@Override
 	@Transactional
-	public String refundTicket(int uId, int fId) {
-		if(userDao.isOutTicket(uId, fId)) {
+	public String refundTicket(int bookId) {
+		/*if(userDao.isOutTicket(uId, fId)) {
 			return "nook";
-		}else {
-			userDao.outOutTicket(uId, fId);
-			userDao.outPayBook(uId, fId);
-			userDao.outPayTrip(uId, fId);
+		}else {}*/
+			/*userDao.outOutTicket(bookId);*/
+			userDao.outPayBook(bookId);
+			userDao.outPayTrip(bookId);
+			int fId=userDao.findFidByBookId(bookId);
+			userDao.addOneTicket(fId);
 			return "ok";
-		}
+		
 	}
 
 	/*//改签？？
@@ -54,6 +58,7 @@ public class UserServiceDaoImpl implements IUserService{
 	@Transactional
 	public void pay(int uId, int fId) {
 		userDao.payBook(uId, fId);
+		
 		userDao.payTrip(uId, fId);
 	}
 
@@ -77,10 +82,10 @@ public class UserServiceDaoImpl implements IUserService{
 		return userDao.isLogin(username, password);
 	}
 
-	@Override
+	/*@Override
 	public boolean isOutTicket(int uId, int fId) {
 		return userDao.isOutTicket(uId, fId);
-	}
+	}*/
 
 	@Override
 	public User findUser(String username) {
@@ -120,6 +125,19 @@ public class UserServiceDaoImpl implements IUserService{
 	@Override
 	public int findLastBookid(int fId, int uId) {
 		return userDao.findLastBookid(fId, uId);
+	}
+
+	@Override
+	public int findFidByBookId(int bookId) {
+		return userDao.findFidByBookId(bookId);
+	}
+
+
+	@Override
+	@Transactional
+	public void endorseTicket(int fId, int bookId) {
+		userDao.changeBookingFid(fId, bookId);
+		userDao.changeTripFid(fId, bookId);
 	}
 	
 }
