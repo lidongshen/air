@@ -16,7 +16,7 @@
 </head>
 <body>
     <div class="zong">
-        <form method="post" id="form1" action="/airsys/user/payTicket/${orderFlight.fId}/<%=session.getAttribute("uId") %>" >
+        <form method="post" id="form1" action="/airsys/user/paypaypay/${orderFlight.fId}/<%=session.getAttribute("uId") %>" >
             <center><h1 class="h1">航空航天票据</h1></center>
             <center><h3>${ orderFlight.fName }</h3></center>
             <div><span>${orderFlight.fFromcity}</span></div>

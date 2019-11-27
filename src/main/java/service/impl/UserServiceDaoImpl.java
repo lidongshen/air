@@ -24,7 +24,8 @@ public class UserServiceDaoImpl implements IUserService{
 		userDao.addBook(uId, fId);
 		userDao.addTrip(uId, fId);
 		int bookId = userDao.findLastBookid(fId, uId);
-		userDao.updateTripInBookId(uId, fId, bookId);
+		int tId = userDao.findMaxTidInTrip();
+		userDao.updateTripInBookId(uId, fId, bookId, tId);
 		userDao.deleteOneTicket(fId);
 	}
 

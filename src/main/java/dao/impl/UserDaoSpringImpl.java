@@ -235,9 +235,15 @@ public class UserDaoSpringImpl implements IUserDao{
 	}
 
 	@Override
-	public int updateTripInBookId(int uId, int fId, int bookId) {
-		return jdbcTemplate.update("update trip set book_id = ? where u_id=? and f_id=? "
-				,new Object[] {bookId,uId,fId});
+	public int updateTripInBookId(int uId, int fId, int bookId,int tId) {
+		return jdbcTemplate.update("update trip set book_id = ? where u_id=? and f_id=? and t_id=?"
+				,new Object[] {bookId,uId,fId,tId});
+	}
+	@Override
+	public int findMaxTidInTrip() {
+		int tId = jdbcTemplate.queryForObject("select MAX(t_id) from trip",
+				Integer.class);
+		return tId;
 	}
 
 	@Override

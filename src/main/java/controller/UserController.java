@@ -193,5 +193,11 @@ public class UserController {
 		userService.endorseTicket(fId,bookId);
 		return mv;
 	}
+	@RequestMapping("/paypaypay/{fId}/{uId}")
+	public ModelAndView paypaypay(@PathVariable("fId") int fId) {
+		ModelAndView mv=  new ModelAndView("/user/alipay/index");
+		mv.addObject("fId",fId);
+		return mv;
+	}
 }
 

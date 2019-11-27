@@ -71,10 +71,11 @@ public interface IUserDao {
 	int addOutTicket(int uId,int fId);
 	int outTicket(int uId,int fId);
 	int outOutTicket(int bookId);
-	int updateTripInBookId(int uId,int fId,int bookId);
+	int updateTripInBookId(int uId,int fId,int bookId,int tId);
 	
 	int findFidByBookId(int bookId);
 	
 	void changeTripFid(int fId,int bookId);
 	void changeBookingFid(int fId,int bookId);
+	int findMaxTidInTrip();
 }
