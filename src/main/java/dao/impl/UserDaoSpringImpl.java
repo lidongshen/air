@@ -1,5 +1,6 @@
 package dao.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,9 +82,9 @@ public class UserDaoSpringImpl implements IUserDao{
 	}
 
 	@Override
-	public List<Flight> findTicket(String from, String to) {
+	public List<Flight> findTicket(String from, String to,String date) {
 		return jdbcTemplate.query(
-				"select * from flight where f_fromcity=? and f_tocity=?",
+				"select * from flight where f_fromcity=? and f_tocity=? and date(f_starttime) like '%"+date+"%'",
 				new Object[] {from,to},
 				new BeanPropertyRowMapper<Flight>(Flight.class));
 	}
@@ -220,7 +221,7 @@ public class UserDaoSpringImpl implements IUserDao{
 
 	@Override
 	public int findLastTid(int fId, int uId) {
-		int bookId = jdbcTemplate.queryForObject("select MAX(book_id) bookId from booking where f_id=? and u_id=?",
+		int bookId = jdbcTemplate.queryForObject("select MAX(t_id) tId from trip where f_id=? and u_id=?",
 				new Object[] {fId,uId},
 				Integer.class);
 		return bookId;
@@ -228,7 +229,7 @@ public class UserDaoSpringImpl implements IUserDao{
 
 	@Override
 	public int findLastBookid(int fId, int uId) {
-		int bookId = jdbcTemplate.queryForObject("select MAX(t_id) tId from trip where f_id=? and u_id=?",
+		int bookId = jdbcTemplate.queryForObject("select MAX(book_id) bookId from booking where f_id=? and u_id=?",
 				new Object[] {fId,uId},
 				Integer.class);
 		return bookId;

@@ -1,10 +1,14 @@
 package dao;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -27,7 +31,16 @@ public class TestUserDao {
 	}
 	@Test
 	public void testFindTicket() {
-		List<Flight> findTicket = userDao.findTicket("太原", "北京");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date parse = null;
+		try {
+			parse = sdf.parse("2019-11-11");
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		String date = sdf.format(parse);
+		System.out.println(date);
+		List<Flight> findTicket = userDao.findTicket("北京", "太原", date);
 		System.out.println(findTicket);
 	}
 	@Test

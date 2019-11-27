@@ -43,7 +43,7 @@ public class UserController {
 		String time = request.getParameter("time");
 		System.out.println(time);
 		ModelAndView mv = new ModelAndView("user/list");
-		List<Flight> f = userService.findTicket(from, to);
+		List<Flight> f = userService.findTicket(from, to,time);
 		mv.addObject("f",f);
 		mv.addObject("time", time);
 		return mv;
@@ -84,14 +84,14 @@ public class UserController {
 		mv.addObject("oneFlight", oneFlight);
 		return mv;
 	}
-	@RequestMapping(value="/payTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
+	/*@RequestMapping(value="/payTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
 	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("uId") int uId) {
 		ModelAndView mv = new ModelAndView("user/pay");
 		System.out.println(fId);
 		System.out.println(uId);
 		userService.pay(uId, fId);
 		return mv;
-	}
+	}*/
 	@RequestMapping(value="/orderTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
 	public ModelAndView orderTicket(@PathVariable("fId") int fId,@PathVariable("uId") int uId) {
 		ModelAndView mv = new ModelAndView("user/orderTicket");
@@ -182,7 +182,8 @@ public class UserController {
 		ModelAndView mv = new ModelAndView("/user/endorseoneTicket");
 		String from = request.getParameter("from");
 		String to = request.getParameter("to");
-		List<Flight> findTicket = userService.findTicket(from, to);
+		String time=request.getParameter("time");
+		List<Flight> findTicket = userService.findTicket(from, to,time);
 		mv.addObject("endorseTickets",findTicket);
 		mv.addObject("bookId",bookId);
 		return mv;
@@ -197,6 +198,8 @@ public class UserController {
 	public ModelAndView paypaypay(@PathVariable("fId") int fId) {
 		ModelAndView mv=  new ModelAndView("/user/alipay/index");
 		mv.addObject("fId",fId);
+		double price = flightService.seachFlight(fId).getfMoney();
+		mv.addObject("price",price);
 		return mv;
 	}
 }

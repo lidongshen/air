@@ -24,10 +24,10 @@ public class UserAlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvBNLjCwv+qJrFLyNMTkTTZJ89IJ8TEOKBI4UdLP2w1TTRwpVzWpszzt5TxzgFD3xkpBCSlSuVaLRYOppvdWi2z2Jh1C4ld5OtFL/nDiFoQNx+CMXdnokOM/RB6AfRC4HwxmWN5GvKI1t287Ml/MiJsA//WiNlBJfSxKbC7q11H+N60tVjI499QN9J/Z5104+IzwkajgZf4S+haT7T5bUAKI1xy9nRYV+BmDuhc8PCAlTS3OKMYAsQWtb+RZymGVo73RWu9rUCqUzP4le65N2ZS2Ytx0RB0QtnZKUJkZm6Pq/wnjRR8dtE4Mk2IX29tdisbYedrA7qT02dCFXfAx77wIDAQAB";
 	
     // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://ddc31b3e.ngrok.io/airsys/user/alipay/notify";
+	public static String notify_url = "http://6d70221a.ngrok.io/airsys/user/alipay/notify";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://ddc31b3e.ngrok.io/airsys/user/alipay/return";
+	public static String return_url = "http://6d70221a.ngrok.io/airsys/user/alipay/return";
 
 	// 签名方式
 	public static String sign_type = "RSA2";

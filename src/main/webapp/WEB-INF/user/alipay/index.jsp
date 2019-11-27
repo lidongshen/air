@@ -216,17 +216,17 @@ ${fId}
 					<hr class="one_line">
 					<dt>订单名称 ：</dt>
 					<dd>
-						<input id="WIDsubject" value="机票" name="WIDsubject" />
+						<input id="WIDsubject" name="WIDsubject" />
 					</dd>
 					<hr class="one_line">
 					<dt>付款金额 ：</dt>
 					<dd>
-						<input id="WIDtotal_amount" value='10000' name="WIDtotal_amount" />
+						<input id="WIDtotal_amount" name="WIDtotal_amount" />
 					</dd>
 					<hr class="one_line">
 					<dt>商品描述：</dt>
 					<dd>
-						<input id="WIDbody" value="机票" name="WIDbody" />
+						<input id="WIDbody" value='airsys welcome your comming' name="WIDbody" />
 					</dd>
 					<hr class="one_line">
 					<dt></dt>
@@ -396,8 +396,8 @@ ${fId}
 		sNow += String(vNow.getSeconds());
 		sNow += String(vNow.getMilliseconds());
 		document.getElementById("WIDout_trade_no").value =  sNow;
-		document.getElementById("WIDsubject").value = "测试";
-		document.getElementById("WIDtotal_amount").value = "0.01";
+		document.getElementById("WIDsubject").value = "机票";
+		document.getElementById("WIDtotal_amount").value = ${price};
 	}
 	GetDateNow();
 </script>

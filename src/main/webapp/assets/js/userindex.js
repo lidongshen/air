@@ -79,14 +79,20 @@ window.onload = function () {
 			var jsonData=eval("("+result+")")
 			console.log(jsonData)
 			for(var i in jsonData){
-			$(".mytablee").append("<tr class='fId"+jsonData[i].fId+"'>" +
-					"<td>"+jsonData[i].uName+"</td>" +
-					"<td>"+jsonData[i].fStarttime+"</br>"+jsonData[i].fFromcity+"</td>"+
-					"<td>"+jsonData[i].fEndtime+"</br>"+jsonData[i].fTocity+"</td>"+
-					"<td>"+jsonData[i].uIspay+"</td>"+
-					"<td><input class='outticket' type='button' value='退票' onclick='refundticket("+jsonData[i].bookId+")'>"
-						+"<input class='refundticket' type='button' value='改签' onclick='endorsepage("+jsonData[i].bookId+")'></td>"
-					+"</tr>")
+				var result="<tr class='fId"+jsonData[i].fId+"'>" +
+				"<td>"+jsonData[i].uName+"</td>" +
+				"<td>"+jsonData[i].fStarttime+"</br>"+jsonData[i].fFromcity+"</td>"+
+				"<td>"+jsonData[i].fEndtime+"</br>"+jsonData[i].fTocity+"</td>"
+				
+				
+				if(jsonData[i].uIspay==1){
+					result += "<td><input class='outticket' type='button' value='退票' onclick='refundticket("+jsonData[i].bookId+")'>"
+							+"<input class='refundticket' type='button' value='改签' onclick='endorsepage("+jsonData[i].bookId+")'></td>"
+							+"</tr>"
+				}else if(jsonData[i].uIspay==0){
+					result += "<td><input class='outticket' type='button' value='已经退票'></td></tr>"
+				}
+				$(".mytablee").append(result)
 			}
 		}
 	})

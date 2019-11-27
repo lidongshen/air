@@ -48,7 +48,7 @@ out.println(session.getAttribute("uId"));
     
     <div class="userindexbottom">  
 	    <div class="findTicket">
-	        <form method="post" id="form1" action="search" >
+	        <form method="post" id="form1" action="/airsys/user/search" >
 	            <fieldset class = "uib-top">
 	                <legend class="chaxun">查询</legend>
 	                <p class="from">
@@ -71,7 +71,6 @@ out.println(session.getAttribute("uId"));
 	    </div>
     </div>
     
-    
     </div>
     <div class="layui-tab-item">
     
@@ -82,7 +81,6 @@ out.println(session.getAttribute("uId"));
     				<th class="username">姓名</th>
     				<th class="userstart">出发时间/地</th>
     				<th class="userend">到达时间/地</th>
-    				<th class="userispay">付款状态</th>
     				<th class="tripeditbtn">操作</th>
     			</tr>
     			

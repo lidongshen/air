@@ -1,5 +1,6 @@
 package service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,8 @@ public class UserServiceDaoImpl implements IUserService{
 		userDao.addTrip(uId, fId);
 		int bookId = userDao.findLastBookid(fId, uId);
 		int tId = userDao.findMaxTidInTrip();
+		System.out.print("BookId============="+bookId);
+		System.out.println("tId=============="+tId);
 		userDao.updateTripInBookId(uId, fId, bookId, tId);
 		userDao.deleteOneTicket(fId);
 	}
@@ -69,8 +72,8 @@ public class UserServiceDaoImpl implements IUserService{
 	}
 
 	@Override
-	public List<Flight> findTicket(String from, String to) {
-		return userDao.findTicket(from, to);
+	public List<Flight> findTicket(String from, String to,String date) {
+		return userDao.findTicket(from, to,date);
 	}
 
 	@Override

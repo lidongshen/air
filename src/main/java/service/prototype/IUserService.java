@@ -1,5 +1,6 @@
 package service.prototype;
 
+import java.util.Date;
 import java.util.List;
 
 import entity.Flight;
@@ -29,7 +30,7 @@ public interface IUserService {
 	List<Flight> findOrder(int uId, String from, String to);
 
 	// 查票
-	List<Flight> findTicket(String from, String to);
+	List<Flight> findTicket(String from, String to,String date);
 
 	// 检查是否付账
 	boolean isPay(int uId, int fId);
