@@ -1,5 +1,6 @@
 window.onload=function(){
-	$(".determine").on("click",function(){
-				location.href="/airsys/cflightlist";
-	})
+	alert(1);
+$(".determine").on("click",function(){
+				window.location.href="/success";
+});
 }

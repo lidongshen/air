@@ -63,59 +63,59 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 
 	@Override
 	//订票
-	public void orderTicket(int cid, int fid) {
-		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values(0,"+cid+","+fid+",0)");
+	public void orderTicket(int uid,int cid, int fid) {
+		jdbcTemplate.update("insert into booking (u_id,c_id,f_id,b_ispay) values("+uid+","+cid+","+fid+",0)");
+	}
+	@Override
+	public void reduceTicket(int fid) {
+		jdbcTemplate.update("update flight set f_seatnum=f_seatnum-1 where f_id=?" ,new Object[] {fid});
 	}
 	//订单查询
 	public List<Booking> findBooking() {
 		return jdbcTemplate.query("SELECT * FROM  booking", new BeanPropertyRowMapper<Booking>(Booking.class));
 	}
-	
-	public List<Booking> findBooking(int cid,int fid) {
-		return jdbcTemplate.query("SELECT * FROM  booking WHERE f_id=? and c_id=? ", new Object[] {cid,fid},new BeanPropertyRowMapper<Booking>(Booking.class));
+	public List<Booking> findBooking( int bookId) {
+		return jdbcTemplate.query("SELECT * FROM  booking WHERE book_id=?", new Object[] {bookId},new BeanPropertyRowMapper<Booking>(Booking.class));
 	}
-
-		@Override
-		//出票
-		public void drawerTicket(int uId,int cId, int fId) {
-			jdbcTemplate.update(
-					"insert into outticket (u_id,f_id,c_id,o_isout) values(?,?,?,1)");
-		} 
-
+	//出票
+	@Override
+	public void drawerTicket(int uId,int cId, int fId) {
+		jdbcTemplate.update(
+				"insert into outticket (u_id,f_id,c_id,o_isout) values(?,?,?,1)",
+				new Object[] {uId,fId,cId});
+	}
+		
 		//退票
 		@Override
 		public void refundTicket(int uId, int fId) {
-			jdbcTemplate.update(
-					"update trip set u_ispay=0 where u_id=? and f_id=?",
-					new Object[] {uId,fId});
 			jdbcTemplate.update(
 					"update booking set b_ispay=0 where u_id=? and f_id=?",
 					new Object[] {uId,fId});
 			jdbcTemplate.update(
 					"update outticket set o_isout=0 where u_id=? and f_id=?",
 					new Object[] {uId,fId});
+			jdbcTemplate.update("update flight set f_seatnum=f_seatnum+1 where f_id=?" ,new Object[] {fId});
 		}
 
 		@Override
 		//改签
 		public void endorseTicket(int uId, int fId1,int fId2) {
 			jdbcTemplate.update(
-					"update trip set f_id = ? where u_id = ? and f_id=?",
-					new Object[] {fId2,uId,fId1});
+					"update booking set f_id = ? where f_id=? and u_id=?",
+					new Object[] {fId2,fId1,uId});
 			jdbcTemplate.update(
-					"update booking set f_id = ? where u_id = ? and f_id=?",
-					new Object[] {fId2,uId,fId1});
+					"update outticket set f_id = ? where f_id=? and u_id=?",
+					new Object[] {fId2,fId1,uId});
 		}
 
 
 		@Override
 		//支付
-		public void pay(int cId, int fId) {
+		public void pay(int uId,int cId, int fId) {
 			jdbcTemplate.update(
-					"update booking set b_ispay=1 where c_id=? and f_id=?",
-					new Object[]{cId,fId});
+					"update booking set b_ispay=1 where c_id=? and f_id=? and u_id=?",
+					new Object[]{cId,fId,uId});
 		}
-
 	@Override
 	//修改用户信息
 	public void Modify(int uid) {
@@ -157,5 +157,6 @@ public class ClerkerDaoJdbcImpl  implements IClerkerDao{
 		return jdbcTemplate.update("update clerker set c_name=?,c_number=?,c_password=?,b_id=? where c_id=?",new Object[] {c.getcName(),c.getcNumber(),c.getcPassword(),c.getbId(),c.getcId()});
 	}
 
+	
 }
 

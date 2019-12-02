@@ -21,21 +21,22 @@ public interface IClerkerDao {
 		//修改用户信息
 		void Modify(int uid);
 		//订票
-		void orderTicket(int cid,int fid);
+		void orderTicket(int uid,int cid,int fid);
+		void reduceTicket(int fid);
 		//订单查询
 		List<Booking> findBooking();
-        List<Booking> findBooking(int cid,int fid);
+        List<Booking> findBooking(int bookId);
 		//出票
-		void drawerTicket(int uId,int cid,int fId);
+		void drawerTicket(int uId,int cId,int fId);
 		
-		//退款
+		//退票
 		void refundTicket(int uId,int fId);
 		
 		//改签
 		void endorseTicket(int uId, int fId1,int fId2);
 		
 		//付账update
-		void pay(int cId, int fId);
+		void pay(int uId,int cId, int fId);
 		
 		List<Clerker> findCPager(int offset ,int pageSize);
 		List<Clerker> findCPager(int offset ,int pageSize,int bId);

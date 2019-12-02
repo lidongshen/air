@@ -22,6 +22,7 @@ a {
 	<h3 align="center">航班信息</h3>
 	<hr color="red">
 	<center>
+		
 		<div class="container">
 			<table class="table table-bordered">
 				<tr>
@@ -29,25 +30,37 @@ a {
 					<th>航班名字</th>
 					<th>起始地</th>
 					<th>目的地</th>
+					<th>机票价格</th>
+					<th>剩余票数</th>
 					<th>出发时间</th>
 					<th>抵达时间</th>
 				</tr>
-
 				<c:forEach items="${f}" var="f">
 					<tr>
 						<td>${f.fId}</td>
 						<td>${f.fName}</td>
 						<td>${f.fFromcity}</td>
 						<td>${f.fTocity}</td>
+						<td>${f.fMoney}</td>
+						<td>${f.fSeatnum}</td>
 						<td>${f.fStarttime}</td>
 						<td>${f.fEndtime}</td>
 					</tr>
 				</table>
-					<button type="button" fid=${f.fId} id="commit"  onclick=clerkerOrderTicket(${f.fId})>订票</button>
+				<h3 align="center">用户信息</h3>
+				<hr color="red">
+				<form class="form-inline" method="post" id="form1" action="search" >
+				 <div class="form-group">
+   				 <label for="uId">用户ID</label>
+    			<input type="text"  class="form-control"  id="uId"  placeholder="请输入用户ID"  name="uId" >
+  				</div><br>
+  				 <div class="form-group">
+   				 <label for="uname">用户姓名</label>
+    			<input type="uname" class="form-control" id="uname" placeholder="请输入用户姓名" name="uname" >
+  				</div>
+  				</form>
+					<button type="button" fid=${f.fId} id="commit"  onclick=clerkerOrderTicket(${f.fId})>生成订单</button>
 				</c:forEach>
-		
-			
-			
 		</div>
 	</center>
 	<script type="text/javascript"

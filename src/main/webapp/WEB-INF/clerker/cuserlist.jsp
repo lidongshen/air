@@ -40,8 +40,6 @@
 					<td>${u.uSex}</td>
 				</tr>
 			</c:forEach>
-			
-			
 		</table>
 	</div>	
 	</center>

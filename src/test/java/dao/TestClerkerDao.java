@@ -68,11 +68,20 @@ public class TestClerkerDao {
 	}
 	@Test
 	public void testOrderTicket() {
-		 clerkerdao.orderTicket(1,1);
-		 List<Booking> b = clerkerdao.findBooking(1, 1);
+		 clerkerdao.orderTicket(1,1,1);
+		 List<Booking> b = clerkerdao.findBooking();
 			for (Booking b1 : b) {
 				System.out.println(b1);
 			}
+	}
+	@Test
+	public void testReduceTicket() {
+		 clerkerdao.reduceTicket(5);
+		 List<Flight> f = clerkerdao.findFlightAll();
+			for (Flight f1 : f) {
+				System.out.println(f1);
+			}
+
 	}
 	@Test
 	public void testFindOrede() {
@@ -82,11 +91,26 @@ public class TestClerkerDao {
 			}
 	}
 	@Test
+	public void testFindOneOrede() {
+		 List<Booking> b = clerkerdao.findBooking(113);
+			for (Booking b1 : b) {
+				System.out.println(b1);
+			}
+	}
+	@Test
 	public void testPay() {
-		clerkerdao.pay(1, 1);
+		clerkerdao.pay(1,1, 1);
 	}
 	@Test
 	public void testDrawerTicket() {
-		clerkerdao.drawerTicket(1, 1, 1);
+		clerkerdao.drawerTicket(2,2, 2);
+	}
+	@Test
+	public 	void FundTicket(){
+		clerkerdao.refundTicket(0, 1);
+	}
+	@Test
+	public 	void endorseTicket(){
+		clerkerdao.endorseTicket(34,3,4);
 	}
 }

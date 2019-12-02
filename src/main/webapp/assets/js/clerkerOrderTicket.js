@@ -1,4 +1,4 @@
 function clerkerOrderTicket(fId){
-	
-	window.location.href="/airsys/corderTicket/"+fId;
+		 var uId= $("#uId").val(); 
+		 window.location.href='/airsys/corderTicket/'+fId+'/'+uId;
 }

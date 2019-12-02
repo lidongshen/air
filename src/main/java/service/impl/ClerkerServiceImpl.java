@@ -54,13 +54,17 @@ public class ClerkerServiceImpl implements IClerkerService {
 	}
 
 	@Override
-	public void orderTicket(int cid, int fid) {
-		clerkerdao.orderTicket(cid, fid);
+	public void orderTicket(int uid,int cid, int fid) {
+		clerkerdao.orderTicket(uid,cid, fid);
 		
 	}
 	@Override
-	public List<Booking> findBooking(int cid, int fid) {
-		return clerkerdao.findBooking(cid, fid);
+	public void reduceTicket(int fid) {
+		clerkerdao.reduceTicket(fid);
+	}
+	@Override
+	public List<Booking> findBooking(int bookId) {
+		return clerkerdao.findBooking(bookId);
 	}
 	
 	@Override
@@ -98,12 +102,29 @@ public class ClerkerServiceImpl implements IClerkerService {
 		return clerkerdao.upDateC(c);
 	}
 	@Override
-	public void pay(int cid, int fid) {
-		clerkerdao.pay(cid, fid);
+	public void pay(int uid,int cid, int fid) {
+		clerkerdao.pay(uid,cid, fid);
 	}
 
 	@Override
 	public List<Booking> findBooking() {
 		return clerkerdao.findBooking();
 	}
+	@Override
+	public void drawerTicket(int uId,int cId, int fId) {
+		clerkerdao.drawerTicket(uId,cId, fId);
+	}
+
+	@Override
+	public void endorseTicket(int uId, int fId1, int fId2) {
+		clerkerdao.endorseTicket(uId,fId1, fId2);
+	}
+
+	@Override
+	public void refundTicket(int uId, int fId) {
+		clerkerdao.refundTicket(uId, fId);		
+	}
+
+
+
 }

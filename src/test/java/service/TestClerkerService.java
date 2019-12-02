@@ -62,8 +62,8 @@ public class TestClerkerService {
 	}
 	@Test
 	public void testOrderTicket() {
-		 clerkerservice.orderTicket(1,1);
-		 List<Booking> b = clerkerservice.findBooking(1, 1);
+		 clerkerservice.orderTicket(1,1,1);
+		 List<Booking> b = clerkerservice.findBooking();
 		 for (Booking b1 : b) {
 				System.out.println(b1);
 			}
@@ -76,8 +76,34 @@ public class TestClerkerService {
 			}
 	}
 	@Test
-	public void testPay() {
-		clerkerservice.pay(1, 1);
+	public void testFindOneOrede() {
+		 List<Booking> b = clerkerservice.findBooking(113);
+			for (Booking b1 : b) {
+				System.out.println(b1);
+			}
 	}
-	
+	@Test
+	public void testPay() {
+		clerkerservice.pay(1,1, 1);
+	}
+	@Test
+	public void testReduceTicket() {
+		clerkerservice.reduceTicket(1);
+		List<Flight> f = clerkerservice.seachFlightAll();
+		for (Flight f1 : f) {
+			System.out.println(f1);
+		}
+	}
+	@Test
+	public void drawerTicket() {
+		clerkerservice.drawerTicket(3,3,3);
+	}
+	@Test
+	public void endorseTicket() {
+		clerkerservice.endorseTicket(34, 4, 3);
+	}
+	@Test
+	public void refundTicket() {
+		clerkerservice.refundTicket(34, 3);
+	}
 }

@@ -13,14 +13,11 @@
     <title>订单</title>
     <link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
     <link rel="stylesheet" href="/airsys/assets/css/userpay.css">
-     <script type="text/javascript" src="/airsys/assets/js/clerkerSleep.js"></script>
+     <script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
     
 </head>
 <body>
-    <form method="post" id="form1" action="/airsys/cflightlist" >
-         <input class="submit" type="submit" value="返回主页面">
-   	</form>
-   	
+
    	<div class="container">
         <div class="twocode">
             二维码
@@ -31,8 +28,10 @@
             <option value="0">微信</option>
             <option value="0">网银</option>
         </select>
-        <input type="button" value="确定" class="determine">
-        <input type="button" value="退出" class="exitbtn">
+        <button><a href="/airsys/success/${fId}/${cId}/${uId}" >确定</a></button>
+        <form method="post" id="form1" action="/airsys/cflightlist" >
+         <input class="submit" type="submit" value="返回主页面">
+   	</form>
     </div>
 </body>
 </html>

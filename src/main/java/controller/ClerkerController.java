@@ -55,22 +55,23 @@ public class ClerkerController {
 		return "ok";
 	}
 	
-	@RequestMapping(value = "/corderTicket/{fId}",produces = "text/plain;charset=utf-8")
-	public ModelAndView corder(@PathVariable("fId" ) int fId,HttpServletRequest request) {
+	@RequestMapping(value = "/corderTicket/{fId}/{uId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView corder(@PathVariable("fId" ) int fId,@PathVariable("uId" ) int uId,HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("clerker/corderTicket");
 		HttpSession session=request.getSession(true);
 		int cId=Integer.parseInt(session.getAttribute("cId").toString());
-		clerkerService.orderTicket(cId, fId);
+		clerkerService.orderTicket(uId,cId, fId);
 		Flight oneFlight = flightService.seachFlight(fId);
 		mv.addObject("oneFlight",oneFlight);
+		mv.addObject("uId",uId);
 		return mv;
 	}
-	@RequestMapping(value="/payTicket/{fId}/{cId}",produces = "text/plain;charset=utf-8")
-	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("cId") int cId) {
-		ModelAndView mv = new ModelAndView("clerker/pay");
-		System.out.println(fId);
-		System.out.println(cId);
-		clerkerService.pay(cId, fId);
+	@RequestMapping(value="payTicket/{fId}/{cId}/{uId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView payTicket(@PathVariable("fId") int fId ,@PathVariable("cId") int cId,@PathVariable("uId") int uId) {
+		ModelAndView mv = new ModelAndView("/clerker/pay");
+		mv.addObject("fId",fId);
+		mv.addObject("cId",cId);
+		mv.addObject("uId",uId);
 		return mv;
 	}
 	
@@ -89,8 +90,6 @@ public class ClerkerController {
 		mv.addObject("f",f);
 		return mv;
 	} 
-	
-	
 	@RequestMapping(value = "/cuserlist",produces = "text/plain;charset=utf-8")
 	public ModelAndView seachuserAll() {
 		ModelAndView mv = new ModelAndView("clerker/cuserlist");
@@ -98,9 +97,15 @@ public class ClerkerController {
 		mv.addObject("u",u);
 		return mv;
 	} 
-	
+	@RequestMapping(value = "/cbookinglist",produces = "text/plain;charset=utf-8")
+	public ModelAndView findbooking() {
+		ModelAndView mv = new ModelAndView("clerker/cbookinglist");
+		List<Booking> b = clerkerService.findBooking();
+		mv.addObject("b",b);
+		return mv;
+	}
 	@RequestMapping(value = "/search",produces = "text/plain;charset=utf-8")
-	public ModelAndView getUsers(HttpServletRequest request) {
+	public ModelAndView getFlight(HttpServletRequest request) {
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {
@@ -113,8 +118,60 @@ public class ClerkerController {
 		ModelAndView mv = new ModelAndView("clerker/list");
 		List<Flight> f = clerkerService.seachFlight(from, to);
 		mv.addObject("f",f);
+		return mv;
+	}
+	@RequestMapping(value="/gaiqian/{bookId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView gaiqian(@PathVariable("bookId") int bookId) {
+		ModelAndView mv = new ModelAndView("clerker/gaiqian");
+		List<Booking> b = clerkerService.findBooking(bookId);
+		mv.addObject("b",b);
+		return mv;
+	}
+	@RequestMapping(value = "/gaiqianlist/{bookId}" ,produces = "text/plain;charset=utf-8")
+	public ModelAndView getFlight1(HttpServletRequest request,@PathVariable("bookId") int bookId) {
+		try {
+			request.setCharacterEncoding("UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		String from = request.getParameter("from");
+		String to = request.getParameter("to");		
+		String time = request.getParameter("time");
+		System.out.println(time);
+		ModelAndView mv = new ModelAndView("clerker/gaiqianlist");
+		List<Flight> f = clerkerService.seachFlight(from, to);
+		List<Booking> b = clerkerService.findBooking(bookId);
+		mv.addObject("f",f);
+		mv.addObject("b",b);
 		mv.addObject("time", time);
 		return mv;
-	} 
-	
+	}
+	@RequestMapping(value="/cbookinglist1",produces = "text/plain;charset=utf-8")
+	public ModelAndView alter(HttpServletRequest request) {
+		int fId1 =Integer.parseInt(request.getParameter("fId1"));
+		int uId =Integer.parseInt(request.getParameter("uId"));
+		int fId2 =Integer.parseInt(request.getParameter("fId2"));
+		System.out.println(fId1);
+		System.out.println(uId);
+		System.out.println(fId2);
+		clerkerService.endorseTicket(uId, fId1, fId2);
+		ModelAndView mv = new ModelAndView("clerker/cbookinglist");
+		List<Booking> b = clerkerService.findBooking();
+		mv.addObject("b",b);
+		return mv;
+	}
+	@RequestMapping(value="/success/{fId}/{cId}/{uId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView pay(@PathVariable("fId") int fId ,@PathVariable("cId") int cId,@PathVariable("uId") int uId) {
+		ModelAndView mv = new ModelAndView("clerker/success");
+		clerkerService.pay(uId,cId, fId);
+		clerkerService.reduceTicket(fId);
+		clerkerService.drawerTicket(uId,cId, fId);
+		return mv;
+	}
+	@RequestMapping(value="/success/{uId}/{fId}",produces = "text/plain;charset=utf-8")
+	public ModelAndView refundTicket(@PathVariable("uId") int uId,@PathVariable("fId") int fId) {
+		ModelAndView mv = new ModelAndView("clerker/refundsuccess");
+		clerkerService.refundTicket(uId, fId);
+		return mv;
+	}
 }

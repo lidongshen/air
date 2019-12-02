@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,7 +19,7 @@
 
 </head>
 <body>
-	<h3 align="center">用户信息</h3>
+	<h3 align="center">订单信息</h3>
 	<hr color="red">
 	<center>
 	<div class="container">
@@ -34,23 +33,24 @@
 				<th>支付情况</th>
 				<th>操作</th>
 			</tr>
-			
-			<c:forEach items="${u}" var="u">
+			<c:forEach items="${b}" var="b">
 				<tr>
-					<td>${u.uId}</td>
-					<td>${u.uName}</td>
-					<td>${u.uPhone}</td>
-					<td>${u.uAge}</td>
-					<td>${u.uSex}</td>
-					<td>查看详情</td>
+					<td>${b.bookId}</td>
+					<td>${b.uId}</td>
+					<td>${b.cId}</td>
+					<td>${b.fId}</td>
+					<td>${b.bDate}</td>
+					<td>${b.bIspay}</td>
+					<td><button type="button" class="btn btn-warning" ><a href="/airsys/gaiqian/${b.bookId}" >改签</a></button>
+					<c:if test="${b.bIspay}!=0">
+							<button type="button" class="btn btn-danger"><a href="/airsys/success/${b.uId}/${b.fId}" >退票</a></button>		
+					</c:if>		
+					</td>
 				</tr>
-			</c:forEach>
-			
-			
+			</c:forEach>		
 		</table>
 	</div>	
 	</center>
-	<script type="text/javascript" src = "/airsys/assets/js/clerkerLookFlight.js"></script>
 </body>
 
 </html>

@@ -15,7 +15,7 @@
 </head>
 <body>
     <div class="zong">
-        <form method="post" id="form1" action="/airsys/payTicket/${oneFlight.fId}/<%=session.getAttribute("cId") %>" >
+        <form method="post" id="form1" action="/airsys/payTicket/${oneFlight.fId}/<%=session.getAttribute("cId") %>/${uId}" >
             <center><h1 class="h1">航空航天订单</h1></center>
             <center><h3>${oneFlight.fName}</h3></center>
             <div><span>${oneFlight.fFromcity}</span></div>
@@ -23,7 +23,7 @@
             <div><span>${oneFlight.fStarttime}</span></div>
             <div><span>${oneFlight.fEndtime}</span></div>
             <div><span>${oneFlight.fMoney}</span></div>		
-            <input class="submit" type="submit" value="确认订单">
+            <input class="submit" type="submit" value="确认订单" >
         </form>
     </div>
 </body>
