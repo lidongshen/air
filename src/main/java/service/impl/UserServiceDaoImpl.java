@@ -143,5 +143,7 @@ public class UserServiceDaoImpl implements IUserService{
 		userDao.changeBookingFid(fId, bookId);
 		userDao.changeTripFid(fId, bookId);
 	}
-	
+	public void addUser(User user) {
+		userDao.addUser(user);
+	}
 }

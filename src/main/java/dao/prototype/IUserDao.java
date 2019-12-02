@@ -79,4 +79,5 @@ public interface IUserDao {
 	void changeTripFid(int fId,int bookId);
 	void changeBookingFid(int fId,int bookId);
 	int findMaxTidInTrip();
+	void addUser(User user);
 }

@@ -16,14 +16,15 @@
 <body>
     <form action="logins" method="POST" class="zong" >
         <p class="p1" style="width:100%;height:32px;font-weight: 600;font-size: 22px;margin:15px 0 10px;">用户登录</p>
-        <div class="form-group">
+        	<div class="form-group">
             <label for="username">用户名</label>
             <input type="text" class="form-control" id="username" name="username" placeholder="请输入用户名">
           </div>
           <div class="form-group">
             <label for="upwd">密码</label>
             <input type="password" class="form-control" id="upwd" name="upwd"  placeholder="请输入密码">
-        </div>
+          </div>
+          <div class="regi">没有账号？点击<a href="/airsys/user/regi">这里</a>注册账号</div>	
         <button type="submit" class="btn btn-success" style="margin-left:10%;width:80%;margin-bottom:20px;" >登录</button>
     </form>
     <%  %>

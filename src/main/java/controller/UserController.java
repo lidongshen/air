@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.alibaba.fastjson.JSON;
 
 import entity.Flight;
-import entity.Trip;
 import entity.TripByUserAndFlight;
 import entity.User;
 import service.prototype.IFlightService;
@@ -103,7 +102,6 @@ public class UserController {
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) {
 		ModelAndView mv = new ModelAndView("user/nologin");
-		
 		return mv;
 	}
 	@RequestMapping("/checksession")
@@ -164,7 +162,7 @@ public class UserController {
 		ModelAndView mv = null;
 		String result = userService.refundTicket(bookId);
 		if("ok".equals(result)) {
-			mv = new ModelAndView("/user/index");
+			mv = new ModelAndView("/user/nologin");
 		}
 		return mv;
 	}
@@ -200,6 +198,42 @@ public class UserController {
 		mv.addObject("fId",fId);
 		double price = flightService.seachFlight(fId).getfMoney();
 		mv.addObject("price",price);
+		return mv;
+	}
+	@RequestMapping("/regi")
+	public  ModelAndView regi() {
+		ModelAndView mv=  new ModelAndView("/user/register");
+		return mv;
+	}
+	@RequestMapping("/register")
+	public  ModelAndView register(HttpServletRequest request) {
+		ModelAndView mv =  null;
+		String uPhone = request.getParameter("username");
+		String password = request.getParameter("upwd");
+		String repassword = request.getParameter("urepwd");
+		int idnum = Integer.parseInt(request.getParameter("idnum"));
+		String name = request.getParameter("name");
+		int age = Integer.parseInt(request.getParameter("age"));
+		int sexs = Integer.parseInt(request.getParameter("sex"));
+		String sex = null;
+		if(sexs==1) {
+			sex="男";
+		}else if(sexs==0) {
+			sex="女";
+		}
+		if(password.equals(repassword)) {
+			User user = new User();
+			user.setuPhone(uPhone);
+			user.setuPassword(password);
+			user.setuNum(idnum);
+			user.setuName(name);
+			user.setuAge(age);
+			user.setuSex(sex);
+			userService.addUser(user);
+			mv =  new ModelAndView("/user/nologin");
+		}else {
+			mv = new ModelAndView("/user/register");
+		}
 		return mv;
 	}
 }

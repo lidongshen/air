@@ -52,4 +52,6 @@ public interface IUserService {
 	
 	int findFidByBookId(int bookId);
 	void endorseTicket(int fId,int bookId);
+	
+	void addUser(User user);
 }

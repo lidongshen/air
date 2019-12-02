@@ -1,6 +1,5 @@
 package dao.impl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import dao.prototype.IUserDao;
 import entity.Flight;
-import entity.OutTicket;
 import entity.Trip;
 import entity.TripByUserAndFlight;
 import entity.User;
@@ -20,6 +18,12 @@ public class UserDaoSpringImpl implements IUserDao{
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
+	@Override
+	public void addUser(User user) {
+		jdbcTemplate.update("insert into user (u_num,u_phone,u_password,u_name,u_age,u_sex) values(?,?,?,?,?,?)",
+				new Object[] {user.getuNum(),user.getuPhone(),user.getuPassword(),user.getuName(),user.getuAge(),user.getuSex()});
+	}
 
 	/*@Override
 	@Transactional
@@ -266,6 +270,6 @@ public class UserDaoSpringImpl implements IUserDao{
 		jdbcTemplate.update("update booking set f_id=? where book_id=?",
 				new Object[] {fId,bookId});
 	}
-	
+
 
 }
