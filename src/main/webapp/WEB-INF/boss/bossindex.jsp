@@ -6,18 +6,49 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
+
     <title>管理者页面</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
     <script src="/airsys/assets/js/echarts.js"></script>
     <script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
+    <link rel="stylesheet" href="/airsys/assets/layui/css/layui.css">
+    <script src="/airsys/assets/layui/layui.js"></script>
+    <%--    <script src="/airsys/assets/js/bossindex.js"></script>--%>
 
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
 
+        }
+
+        a {
+            text-decoration: none;
+            color: whitesmoke;
+        }
+
+        .div1 {
+            width: 100px;
+            height: 50px;
+            background-color: rgba(1, 1, 1, 0.5);
+            border-radius: 10%;
+            color: white;
+            text-align: center;
+            line-height: 50px;
+            position: absolute;
+            z-index: 999;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+
 <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+
 <div id="main" class="main" style="height:400px;"></div>
 
 <div id="year" style="height:400px;"></div>
@@ -35,7 +66,6 @@
     data17 = []
 
 
-    <!--2019-->
     $.ajax({
         url: "businesspointsumdata",
         dataType: 'json',

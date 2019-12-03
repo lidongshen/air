@@ -1,8 +1,10 @@
 package dao.prototype;
 
 
+import entity.Boss;
 import entity.BusinesspointAndNum;
 import entity.Piao;
+import entity.Sum;
 
 import java.util.List;
 
@@ -21,4 +23,13 @@ public interface IBossDao {
     List<Piao> searchBusinesspointSum();
 
     List<BusinesspointAndNum> searchBuAndNum(String year);
+
+    List<Boss> cheackUaP(String username, String pwd);
+
+    List<Sum> cheackSum();
+
+    List<Boss> seeBoss(String id);
+
+    int xxmm(String un, String pd);
+
 }
