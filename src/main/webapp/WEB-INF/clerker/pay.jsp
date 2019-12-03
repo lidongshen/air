@@ -12,21 +12,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>订单</title>
     <link rel="stylesheet" href="/airsys/assets/css/bootstrap.css">
-    <link rel="stylesheet" href="/airsys/assets/css/userpay.css">
+    <link rel="stylesheet" href="/airsys/assets/css/clerkerpay.css">
      <script src="/airsys/assets/jquery-validation/lib/jquery.js"></script>
     
 </head>
 <body>
 
    	<div class="container">
-        <div class="twocode">
-            二维码
-        </div>
+   	<div class="twocode">
+   	<form class="form-inline" method="post" id="form1" action="search" >      
+    <div class="form-group">
+    <label for="from" >收到现金</label>
+	 <input type="text"  class="form-control" >
+  </div>
+  </form>
+   </div>
         <select class="paytype">
             <option value="0">请选择支付方式</option>
-            <option value="0">支付宝</option>
+            <option value="0">现金</option>
             <option value="0">微信</option>
-            <option value="0">网银</option>
+            <option value="0">支付宝</option>
         </select>
         <button><a href="/airsys/success/${fId}/${cId}/${uId}" >确定</a></button>
         <form method="post" id="form1" action="/airsys/cflightlist" >

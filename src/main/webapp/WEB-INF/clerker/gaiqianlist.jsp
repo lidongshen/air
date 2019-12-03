@@ -40,7 +40,9 @@
 					<td>${b.cId}</td>
 					<td >${b.fId}</td>
 					<td>${b.bDate}</td>
-					<td>${b.bIspay}</td>
+					<c:if test="${b.bIspay==1}">
+					<td>已支付</td>
+					</c:if>
 				</tr>
 	
 		</table>

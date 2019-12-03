@@ -1,0 +1,16 @@
+.zong{
+    width: 300px;
+    height: 500px;
+    margin: auto;
+    position: relative;
+    background: url(http://b-ssl.duitang.com/uploads/blog/201407/16/20140716162210_diFa5.jpeg) no-repeat center/100% 100%;
+    color: black;
+}
+.submit{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.one{
+	font-size: 18px;
+}
