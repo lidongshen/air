@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <% 
-out.println(session.getAttribute("uId")); 
 %>
 <!doctype html>
 <html lang="en">
@@ -24,6 +23,7 @@ out.println(session.getAttribute("uId"));
     <link rel="stylesheet" href="/airsys/assets/css/userindex.css">
 </head>
 <body>
+
     <div class = "zong">
         <div class="layui-carousel" id="test1">
 		  <div carousel-item>
@@ -42,10 +42,13 @@ out.println(session.getAttribute("uId"));
     <li class="userchange">修改用户信息<>
     <li class = "exitbtn">退出登录<>
   </ul>
+  <!--  <img src="/airsys/assets/image/1.jpg" alt="#" style="float:left;height: auto;width: 300px;z-index:-1111">
+  -->
   <div class="layui-tab-content">
-    <div class="layui-tab-item layui-show">
-    
+       <div class="layui-tab-item layui-show">
+   
     <div class="userindexbottom">  
+    	
 	    <div class="findTicket">
 	        <form method="post" id="form1" action="/airsys/user/search" >
 	            <fieldset class = "uib-top">

@@ -76,8 +76,8 @@ window.onload = function () {
 		url:"/airsys/user/triplist",
 		success:function(e){
 			var result=e.replace(/\s/g, "");
+			console.log(e);
 			var jsonData=eval("("+result+")")
-			console.log(jsonData)
 			for(var i in jsonData){
 				var result="<tr class='fId"+jsonData[i].fId+"'>" +
 				"<td>"+jsonData[i].uName+"</td>" +

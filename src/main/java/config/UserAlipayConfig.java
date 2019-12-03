@@ -1,4 +1,4 @@
-﻿package config;
+package config;
 
 /**
  *类名：AlipayConfig

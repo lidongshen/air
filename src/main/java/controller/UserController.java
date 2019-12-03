@@ -126,7 +126,11 @@ public class UserController {
 		int uId = Integer.parseInt(session.getAttribute("uId").toString());
 		List<TripByUserAndFlight> trip = userService.findTrip(uId);
 		/*userService.findLastBookid(uId);*/
-		return JSON.toJSONString(trip);
+		if(trip!=null) {
+			return JSON.toJSONString(trip);
+		}else {
+			return "nook";
+		}
 	}
 	@RequestMapping(value="/userlist",produces = "text/plain;charset=utf-8")
 	@ResponseBody
@@ -134,7 +138,11 @@ public class UserController {
 		HttpSession session = request.getSession();
 		int uId = Integer.parseInt(session.getAttribute("uId").toString());
 		User user = userService.findUser(uId);
-		return JSON.toJSONString(user);
+		if(user !=null ) {
+			return JSON.toJSONString(user);
+		}else {
+			return "nook";
+		}
 	}
 	@RequestMapping("/changeMessage")
 	@ResponseBody
@@ -162,7 +170,7 @@ public class UserController {
 		ModelAndView mv = null;
 		String result = userService.refundTicket(bookId);
 		if("ok".equals(result)) {
-			mv = new ModelAndView("/user/nologin");
+			mv = new ModelAndView("/user/index");
 		}
 		return mv;
 	}

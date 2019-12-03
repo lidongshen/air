@@ -22,7 +22,8 @@
 	<h3 align="center">航班详情</h3>
 	<hr color="red">
 	<center>
-	<table border="1px" cellspacing="0" cellpadding="0">
+	<div class="container">
+	<table class="table table-bordered" border="1px" cellspacing="0" cellpadding="0">
 	
 		<tr>
 			<th>航班名字</th>
@@ -48,6 +49,7 @@
             </td>
 		</tr>
 	</table>
+	</div>
 	</center>
 	<script type="text/javascript" src = "/airsys/assets/js/userOrderTicket.js"></script>
 </body>

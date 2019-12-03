@@ -3,7 +3,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql"%>
 <% 
-out.println(session.getAttribute("uId")); 
 %>
 <!doctype html>
 <html lang="en">
